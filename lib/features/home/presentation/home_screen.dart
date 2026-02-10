@@ -7,7 +7,6 @@ import '../../../shared/widgets/double_press_back_widget.dart';
 import '../features/home_tab/presentation/home_tab.dart';
 import 'bottom_navigation_bar.dart';
 import 'cubit/home_navigation_cubit.dart';
-import 'floating_button_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String path = '/home';
@@ -35,10 +34,10 @@ class _HomeScreenState extends State<HomeScreen> {
     _pageController = PageController();
     _tabs = [
       HomeTab(),
-      Placeholder(),
-      Placeholder(),
-      Placeholder(),
-      Placeholder(),
+      Center(child: Text('Categories')),
+      Center(child: Text('Chat')),
+      Center(child: Text('Cart')),
+      Center(child: Text('Profile')),
     ];
   }
 

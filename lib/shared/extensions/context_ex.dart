@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 extension ContextExtension on BuildContext {
-  Size get size => MediaQuery.of(this).size;
+  Size get size => MediaQuery.sizeOf(this);
   double get mediaQueryShortestSide => size.shortestSide;
 
   double get keyboardBottomPadding => MediaQuery.of(this).viewInsets.bottom;

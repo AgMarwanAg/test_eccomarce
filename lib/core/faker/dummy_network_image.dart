@@ -1,5 +1,3 @@
-
-
 ///[Please_note] that when using this class with [CachedNetworkImage]
 ///it will cause a lot of unnecessary caching of images.
 ///This class is intended for testing purposes only.
@@ -10,7 +8,6 @@
 ///for test purposes
 ///
 class DummyImage {
- 
   ///returns URL for random image with given width and height
   ///default values are 500x300
   ///[w] width can not be greater than 5000
@@ -30,7 +27,10 @@ class DummyImage {
   //   if (h > 2000) h = 2000;
   //   return 'https://via.placeholder.com/${w}x$h';
   // }
-  static String placeholderImage()=>"https://picsum.photos/250/250";
+  // static String placeholderImage() => "https://picsum.photos/250/250";
+  static String placeholderImage() =>
+      "https://www.shutterstock.com/image-photo/sun-sets-behind-mountain-ranges-600nw-2479236003.jpg";
+
   ///returns URL for random image with given width and height
   ///default values are 500x300
   ///[w] width can not be greater than 2000
@@ -46,7 +46,7 @@ class DummyImage {
   //   // String bgc = _colorToHex(bgColor);
   //   return 'https://dummyimage.com/300x200/$bgc/$tc&text=$t';
   // }
-  // ///converts color to hex format 
+  // ///converts color to hex format
   // static String _colorToHex(Color color) {
   //   return (color.value & 0xFFFFFF).toRadixString(16).padLeft(6, '0').toUpperCase();
   // }

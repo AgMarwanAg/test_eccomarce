@@ -38,19 +38,24 @@ class AppScaffold extends StatelessWidget {
     this.floatingActionButtonLocation,
     this.bottomSheet,
     this.appBar,
-    this.padding = 22,
+    this.padding = 20,
   });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar,
-      body: SafeArea(top: withSafeArea, child: body.paddingHorizontal(padding.w)),
+      body: SafeArea(
+        top: withSafeArea,
+        child: body.paddingHorizontal(padding.w),
+      ),
       extendBody: extendBody,
-      
+
       floatingActionButton: floatingActionButton,
       floatingActionButtonLocation: floatingActionButtonLocation,
-      bottomNavigationBar: SafeArea(child: bottomNavigationBar ?? SizedBox.shrink()),
+      bottomNavigationBar: SafeArea(
+        child: bottomNavigationBar ?? SizedBox.shrink(),
+      ),
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       backgroundColor: backgroundColor ?? AppColors.scaffoldBackgroundColor,
       bottomSheet: bottomSheet,

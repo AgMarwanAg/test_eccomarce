@@ -3,9 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../config/style/app_decoration.dart';
 import '../../../shared/extensions/_export.dart';
 import '../../../shared/widgets/images/svg_image.dart';
-import '../../../shared/widgets/text_widget.dart';
 
-class BottomNavigatorBarWidget extends StatefulWidget {
+class BottomNavigatorBarWidget extends StatelessWidget {
   static final double height = 40.h;
 
   final int selectedIndex;
@@ -17,102 +16,64 @@ class BottomNavigatorBarWidget extends StatefulWidget {
     required this.onIndexChanged,
   });
 
-  @override
-  State<BottomNavigatorBarWidget> createState() =>
-      _BottomNavigatorBarWidgetState();
-}
+  static const List<String> _icons = [
+    AppIcons.home,
+    AppIcons.category,
+    AppIcons.chat,
+    AppIcons.cart,
+    AppIcons.profile,
+  ];
 
-class _BottomNavigatorBarWidgetState extends State<BottomNavigatorBarWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 25.h, horizontal: 48.w),
       decoration: AppDecoration.navBarDecoration,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _buildItem(
-                BottomBarModel(
-                  index: 0,
-                  selected: widget.selectedIndex == 0,
-                  icon: AppIcons.home,
-                ),
-                index: 0,
-              ),
-              _buildItem(
-                BottomBarModel(
-                  index: 1,
-                  icon: AppIcons.category,
-                  selected: widget.selectedIndex == 1,
-                ),
-                index: 1,
-              ),
-              _buildItem(
-                BottomBarModel(
-                  index: 1,
-                  icon: AppIcons.chat,
-                  selected: widget.selectedIndex == 2,
-                ),
-                index: 1,
-              ),
-              _buildItem(
-                BottomBarModel(
-                  index: 1,
-                  icon: AppIcons.cart,
-                  selected: widget.selectedIndex == 3,
-                ),
-                index: 2,
-              ),
-              _buildItem(
-                BottomBarModel(
-                  index: 1,
-                  icon: AppIcons.profile,
-                  selected: widget.selectedIndex == 4,
-                ),
-                index: 3,
-              ),
-            ],
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: List.generate(
+          _icons.length,
+          (index) => _BottomNavItem(
+            icon: _icons[index],
+            selected: selectedIndex == index,
+            onTap: () => onIndexChanged(index),
           ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildItem(BottomBarModel item, {required int index}) {
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: () => widget.onIndexChanged(index),
-      child: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 500),
-        transitionBuilder: (Widget child, Animation<double> animation) {
-          return FadeTransition(
-            opacity: animation,
-            child: ScaleTransition(scale: animation, child: child),
-          );
-        },
-        child: SvgAsset(
-          height: 24.sp,
-          width: 24.sp,
-          key: ValueKey<bool>(item.selected),
-          item.icon,
-          color: item.selected ? AppColors.blackColor : AppColors.hintColors,
         ),
       ),
     );
   }
 }
 
-class BottomBarModel {
-  final int index;
+class _BottomNavItem extends StatelessWidget {
   final String icon;
   final bool selected;
+  final VoidCallback onTap;
 
-  BottomBarModel({
-    required this.index,
+  const _BottomNavItem({
     required this.icon,
     required this.selected,
+    required this.onTap,
   });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: onTap,
+      child: AnimatedScale(
+        duration: const Duration(milliseconds: 300),
+        scale: selected ? 1.1 : 1.0,
+        child: AnimatedOpacity(
+          duration: const Duration(milliseconds: 300),
+          opacity: selected ? 1 : 0.6,
+          child: SvgAsset(
+            height: 24.sp,
+            width: 24.sp,
+            icon,
+            color: selected ? AppColors.blackColor : AppColors.hintColors,
+          ),
+        ),
+      ),
+    );
+  }
 }
