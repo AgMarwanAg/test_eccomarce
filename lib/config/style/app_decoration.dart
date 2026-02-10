@@ -24,8 +24,12 @@ class AppDecoration {
     ],
   );
 
-  static BoxDecoration get category => BoxDecoration(
+  static BoxDecoration get categoryItem => BoxDecoration(
     borderRadius: BorderRadius.circular(16.r),
+    border: Border.all(color: AppColors.appDivider),
+  );
+  static BoxDecoration get productCard => BoxDecoration(
+    borderRadius: BorderRadius.circular(24.r),
     border: Border.all(color: AppColors.appDivider),
   );
 }

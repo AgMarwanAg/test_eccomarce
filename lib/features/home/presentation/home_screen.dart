@@ -73,6 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
           }
         },
         child: AppScaffold(
+          padding: 0,
           withSafeArea: true,
           body: PageView(
             physics: NeverScrollableScrollPhysics(),

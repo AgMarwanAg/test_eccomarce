@@ -29,7 +29,7 @@ class DummyImage {
   // }
   // static String placeholderImage() => "https://picsum.photos/250/250";
   static String placeholderImage() =>
-      "https://www.shutterstock.com/image-photo/sun-sets-behind-mountain-ranges-600nw-2479236003.jpg";
+      "https://www.shutterstock.com/image-photo/sun-sets-behind-mountain-ranges-600nw-2479236013.jpg";
 
   ///returns URL for random image with given width and height
   ///default values are 500x300

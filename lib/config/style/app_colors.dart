@@ -12,12 +12,13 @@ class AppColors {
   static const Color appDivider = Color(0xFFF1F5F9);
   static const Color transparent = Colors.transparent;
   static const Color errorColor = Color(0xFFEF5350);
-  static const Color navBarColor = whiteColor;
+  static const Color navBarColor = Color(0xFFF6F6F6);
 
-  //Font colors
+  //grey colors
   static const Color primaryFontColor = Color(0xFF0F172A);
   static Color fontGreyColor = const Color(0xFF6B7280);
   static const Color hintColors = Color(0xFF94A3B8);
+  static const Color homeBlogBGColor = Color(0xFFEBEBEB);
   //Button colors
 
   //shimmer colors

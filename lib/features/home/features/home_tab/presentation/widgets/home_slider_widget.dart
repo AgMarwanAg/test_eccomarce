@@ -24,6 +24,7 @@ class HomeSliderWidget extends StatelessWidget {
               url: DummyImage.placeholderImage(),
               height: 223.h,
               width: context.width * 0.8,
+              fit: BoxFit.fill,
             ),
           ),
         ],

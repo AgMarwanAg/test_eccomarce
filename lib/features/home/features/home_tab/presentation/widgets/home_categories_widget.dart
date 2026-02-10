@@ -73,7 +73,7 @@ class _BuildItem extends StatelessWidget {
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
-        decoration: AppDecoration.category.copyWith(
+        decoration: AppDecoration.categoryItem.copyWith(
           color: isSelected ? AppColors.primaryColor : AppColors.whiteColor,
         ),
         child: TextWidget(

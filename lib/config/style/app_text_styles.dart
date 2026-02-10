@@ -7,6 +7,7 @@ class AppTextStyle {
   static TextStyle get s9W700 =>  TextStyle(fontSize: 9.sp, fontWeight: FontWeight.w700);
   static TextStyle get s10W700 => TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w700);
   static TextStyle get s10W600 => TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w600);
+  static TextStyle get s10W500 => TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w500);
   static TextStyle get s10W600p => TextStyle(color: AppColors.primaryColor, fontSize: 10.sp, fontWeight: FontWeight.w600);
   static TextStyle get s11W600 => TextStyle(fontSize: 11.sp, fontWeight: FontWeight.w600);
   static TextStyle get s11W700 => TextStyle(fontSize: 11.sp, fontWeight: FontWeight.w700);
