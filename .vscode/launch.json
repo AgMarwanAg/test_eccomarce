@@ -1,0 +1,100 @@
+// The Dart/Flutter debugger uses this configuration to determine how to launch the app.
+// The VS Code Dart extension will pick up this configuration when the user starts debugging.
+
+{
+	"version": "0.2.0",  // Version of the launch configuration format used by the Dart/Flutter debugger.
+	"configurations": [
+		
+		
+		{
+			"name": "app [dev]",  // Name of the configuration for the development environment.
+			"request": "launch",  // Specifies that this configuration will launch the app.
+			"type": "dart",  // The type of configuration, indicating it's for a Dart/Flutter application.
+			"program": "lib/main_dev.dart",  // The entry point of the app for the development environment.
+			"args": [
+				"--flavor",  // Passes the 'flavor' argument to specify which flavor to use when running the app.
+				"dev",  // Indicates the flavor to be used is 'dev', typically linked to development-specific configurations.
+				"--no-enable-impeller"  // Disables the Impeller renderer.
+			]
+		},
+		{
+			"name": "app [prod]",  // Name of the configuration for the production environment.
+			"request": "launch",  // Specifies that this configuration will launch the app.
+			"type": "dart",  // The type of configuration, indicating it's for a Dart/Flutter application.
+			"program": "lib/main_prod.dart",  // The entry point of the app for the production environment.
+			"args": [
+				"--flavor",  // Passes the 'flavor' argument to specify which flavor to use when running the app.
+				"prod"  // Indicates the flavor to be used is 'prod', typically linked to production-specific configurations.
+			]
+		},
+		{
+			"name": "app [dev] Debug",  // Name of the configuration for the development environment in debug mode.
+			"request": "launch",  // Specifies that this configuration will launch the app.
+			"type": "dart",  // The type of configuration, indicating it's for a Dart/Flutter application.
+			"program": "lib/main_dev.dart",  // The entry point of the app for the development environment.
+			"args": [
+				"--flavor",  // Passes the 'flavor' argument to specify which flavor to use when running the app.
+				"dev"  // Indicates the flavor to be used is 'dev', typically linked to development-specific configurations.
+			],
+			"flutterMode": "debug"  // Specifies that the app should be run in debug mode.
+		},
+		{
+			"name": "app [prod] Debug",  // Name of the configuration for the production environment in debug mode.
+			"request": "launch",  // Specifies that this configuration will launch the app.
+			"type": "dart",  // The type of configuration, indicating it's for a Dart/Flutter application.
+			"program": "lib/main_prod.dart",  // The entry point of the app for the production environment.
+			"args": [
+				"--flavor",  // Passes the 'flavor' argument to specify which flavor to use when running the app.
+				"prod"  // Indicates the flavor to be used is 'prod', typically linked to production-specific configurations.
+			],
+			"flutterMode": "debug"  // Specifies that the app should be run in debug mode.
+		}
+		,
+		{
+			"name": "app [dev] Profile",  // Name of the configuration for the development environment in profile mode.
+			"request": "launch",  // Specifies that this configuration will launch the app.
+			"type": "dart",  // The type of configuration, indicating it's for a Dart/Flutter application.
+			"program": "lib/main_dev.dart",  // The entry point of the app for the development environment.
+			"args": [
+				"--flavor",  // Passes the 'flavor' argument to specify which flavor to use when running the app.
+				"dev"  // Indicates the flavor to be used is 'dev', typically linked to development-specific configurations.
+			],
+			"flutterMode": "profile"  // Specifies that the app should be run in profile mode.
+		},
+		{
+			"name": "app [prod] Profile",  // Name of the configuration for the production environment in profile mode.
+			"request": "launch",  // Specifies that this configuration will launch the app.
+			"type": "dart",  // The type of configuration, indicating it's for a Dart/Flutter application.
+			"program": "lib/main_prod.dart",  // The entry point of the app for the production environment.
+			"args": [
+				"--flavor",  // Passes the 'flavor' argument to specify which flavor to use when running the app.
+				"prod"  // Indicates the flavor to be used is 'prod', typically linked to production-specific configurations.
+			],
+			"flutterMode": "profile"  // Specifies that the app should be run in profile mode.
+		}
+		,
+		{
+			"name": "app [dev] Release",  // Name of the configuration for the development environment in release mode.
+			"request": "launch",  // Specifies that this configuration will launch the app.
+			"type": "dart",  // The type of configuration, indicating it's for a Dart/Flutter application.
+			"program": "lib/main_dev.dart",  // The entry point of the app for the development environment.
+			"args": [
+				"--flavor",  // Passes the 'flavor' argument to specify which flavor to use when running the app.
+				"dev"  // Indicates the flavor to be used is 'dev', typically linked to development-specific configurations.
+			],
+			"flutterMode": "release"  // Specifies that the app should be run in release mode.
+		},
+		{
+			"name": "app [prod] Release",  // Name of the configuration for the production environment in release mode.
+			"request": "launch",  // Specifies that this configuration will launch the app.
+			"type": "dart",  // The type of configuration, indicating it's for a Dart/Flutter application.
+			"program": "lib/main_prod.dart",  // The entry point of the app for the production environment.
+			"args": [
+				"--flavor",  // Passes the 'flavor' argument to specify which flavor to use when running the app.
+				"prod"  // Indicates the flavor to be used is 'prod', typically linked to production-specific configurations.
+			],
+			"flutterMode": "release"  // Specifies that the app should be run in release mode.
+		}
+		
+	]
+}

@@ -1,0 +1,60 @@
+{
+    "------------------Shared----------------": "",
+    "retry": "Retry",
+    "press_again_to_exit": "press again to exit",
+    "validation": {
+        "required": "This field is required",
+        "invalid_email": "Invalid email",
+        "invalid_phone": "Invalid phone number",
+        "invalid_phone_length": "Invalid phone number length",
+        "password_length": "Password must be at least 8 characters",
+        "password_mismatch": "Passwords do not match",
+        "minimum_length": "Minimum amount is {count}",
+        "product_max_limit": "{title} max limit is {limit}"
+    },
+    "timeAgo": {
+        "data": "data",
+        "submit": "Submit",
+        "just_now": "Just now",
+        "seconds": "{count} seconds",
+        "minute": "1 minute",
+        "minutes": "{count} minutes",
+        "hour": "1 hour",
+        "hours": "{count} hours",
+        "day": "1 day",
+        "days": "{count} days",
+        "week": "1 week",
+        "weeks": "{count} weeks",
+        "month": "1 month",
+        "months": "{count} months",
+        "year": "1 year",
+        "years": "{count} years",
+        "ago": "ago"
+    },
+    "update": {
+        "title": "Update Required",
+        "version_available": "Version {version} Available",
+        "description": "A new version of the app is available with exciting features and improvements. Please update to continue enjoying the best experience.",
+        "update_now": "Update Now",
+        "maybe_later": "Update Later"
+    },
+    "exc": {
+        "connectionTimeout": "Connection timed out",
+        "sendTimeout": "Send timed out",
+        "receiveTimeout": "Receive timed out",
+        "requestCanceled": "The request was canceled",
+        "noInternet": "No internet connection",
+        "unknown": "An unknown error occurred",
+        "unexpected": "An unexpected error occurred",
+        "badRequest": "Bad request",
+        "unauthorized": "Unauthorized",
+        "forbidden": "Forbidden",
+        "notFound": "Not found",
+        "internalServerError": "Internal server error",
+        "error_parsing_error_response": "Error parsing the error response",
+        "invalid_status_code": "Invalid response with status code: {code}",
+        "service_unavailable_now": "Service is unavailable now",
+        "session_expired": "Session expired",
+        "out_of_range": "Out of range"
+    }
+}

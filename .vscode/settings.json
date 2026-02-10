@@ -1,0 +1,31 @@
+{
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#b8ec62",
+    "activityBar.background": "#b8ec62",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#1c98e3",
+    "activityBarBadge.foreground": "#e7e7e7",
+    "commandCenter.border": "#15202b99",
+    "sash.hoverBorder": "#b8ec62",
+    "statusBar.background": "#a3e635",
+    "statusBar.foreground": "#15202b",
+    "statusBarItem.hoverBackground": "#8ace1a",
+    "statusBarItem.remoteBackground": "#a3e635",
+    "statusBarItem.remoteForeground": "#15202b",
+    "titleBar.activeBackground": "#a3e635",
+    "titleBar.activeForeground": "#15202b",
+    "titleBar.inactiveBackground": "#a3e63599",
+    "titleBar.inactiveForeground": "#15202b99"
+  },
+  "peacock.color": "#A3E635",
+  "dart.flutterSdkPath": ".fvm/versions/3.38.5",
+  "Codegeex.Chat.LanguagePreference": "English",
+  "Codegeex.Comment.LanguagePreference": "English",
+  "Codegeex.CommitMessage.LanguagePreference": "English",
+  "Codegeex.SidebarUI.LanguagePreference": "English",
+  "Codegeex.RepoIndex": true,
+  "cSpell.words": [
+    "incart"
+  ]
+}

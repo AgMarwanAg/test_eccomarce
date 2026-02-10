@@ -1,0 +1,60 @@
+{
+    "------------------Shared----------------": "",
+    "retry": "اعادة المحاولة",
+    "press_again_to_exit": "اضغط مرة اخرى للخروج",
+    "validation": {
+        "required": "هذا الحقل مطلوب",
+        "invalid_email": "الايميل غير صحيح",
+        "invalid_phone": "رقم الهاتف غير صحيح",
+        "invalid_phone_length": "رقم الهاتف غير صحيح",
+        "password_length": "كلمة المرور يجب ان تكون على الاقل 8 حروف",
+        "password_mismatch": "كلمة المرور غير مطابقة",
+        "minimum_length": "الحد الادنى هو {count}",
+        "product_max_limit": "الحد الأقصى للـ {title} هو {limit}"
+    },
+    "timeAgo": {
+        "data": "بيانات",
+        "submit": "تقديم",
+        "just_now": "الآن",
+        "seconds": "{count} ثواني",
+        "minute": "دقيقة واحدة",
+        "minutes": "{count} دقائق",
+        "hour": "ساعة واحدة",
+        "hours": "{count} ساعات",
+        "day": "يوم واحد",
+        "days": "{count} أيام",
+        "week": "أسبوع واحد",
+        "weeks": "{count} أسابيع",
+        "month": "شهر واحد",
+        "months": "{count} أشهر",
+        "year": "سنة واحدة",
+        "years": "{count} سنوات",
+        "ago": "منذ"
+    },
+    "update": {
+        "title": "التحديث مطلوب",
+        "version_available": "الإصدار {version} متاح",
+        "description": "يتوفر إصدار جديد من التطبيق مع ميزات وتحسينات رائعة. يرجى التحديث للاستمرار في الاستمتاع بأفضل تجربة.",
+        "update_now": "حدّث الآن",
+        "maybe_later": "احصل على تحديث لاحقا"
+    },
+    "exc": {
+        "connectionTimeout": "انتهت مهلة الاتصال",
+        "sendTimeout": "انتهت مهلة الإرسال",
+        "receiveTimeout": "انتهت مهلة الاستقبال",
+        "requestCanceled": "تم إلغاء الطلب",
+        "noInternet": "لا يوجد اتصال بالإنترنت",
+        "unknown": "خطأ غير معروف",
+        "unexpected": "خطأ غير متوقع",
+        "badRequest": "طلب خاطئ",
+        "unauthorized": "غير مصرح",
+        "forbidden": "ممنوع",
+        "notFound": "غير موجود",
+        "internalServerError": "خطأ في الخادم",
+        "error_parsing_error_response": "خطأ في تحليل استجابة الخطأ",
+        "invalid_status_code": "استجابة غير صالحة مع رمز الحالة: {code}",
+        "service_unavailable_now": "الخدمة غير متوفرة في الوقت الحالي",
+        "session_expired": "انتهت الجلسة",
+        "out_of_range": "خارج النطاق"
+    }
+}
