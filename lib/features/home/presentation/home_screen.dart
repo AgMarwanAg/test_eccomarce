@@ -10,8 +10,7 @@ import 'cubit/home_navigation_cubit.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String path = '/home';
-  static const String name = 'home';
-  const HomeScreen({super.key, this.selectedIndex});
+   const HomeScreen({super.key, this.selectedIndex});
   final int? selectedIndex;
 
   @override

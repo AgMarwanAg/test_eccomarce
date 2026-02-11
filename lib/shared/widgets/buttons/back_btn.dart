@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:test_eccomarce/shared/widgets/images/svg_image.dart';
 
 class BackBtnWidget extends StatelessWidget {
-  const BackBtnWidget({super.key});
+  final bool withBorder;
+  const BackBtnWidget({super.key, this.withBorder = false});
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +11,12 @@ class BackBtnWidget extends StatelessWidget {
       visible: ModalRoute.of(context)?.canPop ?? false,
       child: GestureDetector(
         onTap: () => Navigator.pop(context),
-        child: Icon(Icons.arrow_back)
+        child: withBorder
+            ? CircleAvatar(
+                backgroundColor: AppColors.navBarColor,
+                child: Icon(Icons.arrow_back),
+              )
+            : Icon(Icons.arrow_back),
       ),
     );
   }

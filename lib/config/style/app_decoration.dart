@@ -32,4 +32,10 @@ class AppDecoration {
     borderRadius: BorderRadius.circular(24.r),
     border: Border.all(color: AppColors.appDivider),
   );
+  static ShapeDecoration get discountCard=>ShapeDecoration(
+    color: AppColors.primaryDisabledColor,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(99.r),
+    ),
+  );
 }

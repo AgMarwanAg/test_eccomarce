@@ -41,6 +41,7 @@ class AppTextStyle {
   static TextStyle get s20W600 => TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w600);
   static TextStyle get s20W700 => TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w700);
   static TextStyle get s20W700p => TextStyle(color: AppColors.primaryColor, fontSize: 20.sp, fontWeight: FontWeight.w700);
+  static TextStyle get s24W700 => TextStyle( fontSize: 24.sp, fontWeight: FontWeight.w700);
   static TextStyle get s30W700 => TextStyle(fontSize: 30.sp, fontWeight: FontWeight.w700);
   static TextStyle get s32W700white => TextStyle(color: AppColors.whiteColor, fontSize: 32.sp, fontWeight: FontWeight.w700);
   static TextStyle get s30W700p => TextStyle(color: AppColors.primaryFontColor, fontSize: 30.sp, fontWeight: FontWeight.w700);

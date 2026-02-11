@@ -3,9 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:test_eccomarce/config/style/app_colors.dart';
 import 'package:test_eccomarce/config/style/app_decoration.dart';
 import 'package:test_eccomarce/core/faker/dummy_network_image.dart';
+import 'package:test_eccomarce/features/product_details/presentation/product_details_screen.dart';
 import 'package:test_eccomarce/shared/extensions/_export.dart';
 import 'package:test_eccomarce/shared/models/product_model.dart';
-import 'package:test_eccomarce/shared/widgets/animations/_animation_export.dart';
 import 'package:test_eccomarce/shared/widgets/images/network_image.dart';
 import 'package:test_eccomarce/shared/widgets/text_widget.dart';
 
@@ -58,91 +58,96 @@ class _BuildItemState extends State<_BuildItem> {
   late bool isFav = widget.isFavorate;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 155.w,
-      padding: EdgeInsets.all(12.w),
-      decoration: AppDecoration.productCard,
-      child: Stack(
-        alignment: AlignmentDirectional.topEnd,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              NetWorkImageWidget(
-                url: DummyImage.placeholderImage(),
-                width: 112.w,
-                height: 112.w,
-                alignment: Alignment.center,
-                fit: BoxFit.fill,
-              ).paddingSymmetric(h: 10.w, v: 8.h),
-              12.sizeH,
-              TextWidget(
-                widget.product.category,
-                style: AppTextStyle.s10W500.copyWith(
-                  color: AppColors.hintColors,
-                ),
-              ),
-              TextWidget(widget.product.title, style: AppTextStyle.s12W700),
-              Container(
-                padding: EdgeInsetsDirectional.only(
-                  start: 6.w,
-                  top: 6.h,
-                  bottom: 6.h,
-                ),
-                decoration: BoxDecoration(
-                  color: AppColors.appDivider,
-                  borderRadius: BorderRadius.circular(20.r),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    TextWidget(
-                      "${widget.product.price} USD",
-                      style: AppTextStyle.s12W700,
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(4.w),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: AppColors.blackColor,
-                      ),
-                      child: Icon(
-                        Icons.add,
-                        color: AppColors.whiteColor,
-                        size: 18.sp,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          GestureDetector(
-            onTap: () {
-              setState(() => isFav = !isFav);
-            },
-            child: AnimatedSwitcher(
-              duration: const Duration(milliseconds: 250),
-              transitionBuilder: (child, animation) {
-                return ScaleTransition(
-                  scale: Tween<double>(begin: 0.6, end: 1.0).animate(
-                    CurvedAnimation(
-                      parent: animation,
-                      curve: Curves.easeOutBack,
-                    ),
+    return GestureDetector(
+      onTap: () {
+        ProductDetailsScreen.push(context, id: widget.product.id);
+      },
+      child: Container(
+        width: 155.w,
+        padding: EdgeInsets.all(12.w),
+        decoration: AppDecoration.productCard,
+        child: Stack(
+          alignment: AlignmentDirectional.topEnd,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                NetWorkImageWidget(
+                  url: DummyImage.placeholderImage(),
+                  width: 112.w,
+                  height: 112.w,
+                  alignment: Alignment.center,
+                  fit: BoxFit.fill,
+                ).paddingSymmetric(h: 10.w, v: 8.h),
+                12.sizeH,
+                TextWidget(
+                  widget.product.category,
+                  style: AppTextStyle.s10W500.copyWith(
+                    color: AppColors.hintColors,
                   ),
-                  child: FadeTransition(opacity: animation, child: child),
-                );
+                ),
+                TextWidget(widget.product.title, style: AppTextStyle.s12W700),
+                Container(
+                  padding: EdgeInsetsDirectional.only(
+                    start: 6.w,
+                    top: 6.h,
+                    bottom: 6.h,
+                  ),
+                  decoration: BoxDecoration(
+                    color: AppColors.appDivider,
+                    borderRadius: BorderRadius.circular(20.r),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      TextWidget(
+                        "${widget.product.price} USD",
+                        style: AppTextStyle.s12W700,
+                      ),
+                      Container(
+                        padding: EdgeInsets.all(4.w),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.blackColor,
+                        ),
+                        child: Icon(
+                          Icons.add,
+                          color: AppColors.whiteColor,
+                          size: 18.sp,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            GestureDetector(
+              onTap: () {
+                setState(() => isFav = !isFav);
               },
-              child: Icon(
-                isFav ? Icons.favorite : Icons.favorite_border_outlined,
-                key: ValueKey(isFav),
-                color: isFav ? AppColors.primaryColor : AppColors.blackColor,
-                size: 18.sp,
+              child: AnimatedSwitcher(
+                duration: const Duration(milliseconds: 250),
+                transitionBuilder: (child, animation) {
+                  return ScaleTransition(
+                    scale: Tween<double>(begin: 0.6, end: 1.0).animate(
+                      CurvedAnimation(
+                        parent: animation,
+                        curve: Curves.easeOutBack,
+                      ),
+                    ),
+                    child: FadeTransition(opacity: animation, child: child),
+                  );
+                },
+                child: Icon(
+                  isFav ? Icons.favorite : Icons.favorite_border_outlined,
+                  key: ValueKey(isFav),
+                  color: isFav ? AppColors.primaryColor : AppColors.blackColor,
+                  size: 18.sp,
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
