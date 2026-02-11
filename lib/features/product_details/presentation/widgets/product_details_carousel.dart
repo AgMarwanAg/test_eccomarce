@@ -34,7 +34,7 @@ class _ProductDetailsCarouselState extends State<ProductDetailsCarousel> {
             height: 246.h,
             viewportFraction: 1,
             initialPage: 0,
-            autoPlay: true,
+            autoPlay: widget.images.length > 1,
             autoPlayInterval: const Duration(seconds: 3),
 
             pauseAutoPlayOnTouch: true,
@@ -56,20 +56,17 @@ class _ProductDetailsCarouselState extends State<ProductDetailsCarousel> {
           },
         ),
         48.sizeH,
-        Visibility(
-          visible: widget.images.length > 1,
-          child: Container(
-            height: 22,
-            padding: EdgeInsets.symmetric(horizontal: 12.w),
-            margin: EdgeInsets.only(bottom: 8.h),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: List.generate(
-                widget.images.length,
-                (index) => GestureDetector(
-                  onTap: () => _carouselController.animateToPage(index),
-                  child: _BuildItem(selected: _currentIndex == index),
-                ),
+        Container(
+          height: 22,
+          padding: EdgeInsets.symmetric(horizontal: 12.w),
+          margin: EdgeInsets.only(bottom: 8.h),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: List.generate(
+              widget.images.length,
+              (index) => GestureDetector(
+                onTap: () => _carouselController.animateToPage(index),
+                child: _BuildItem(selected: _currentIndex == index),
               ),
             ),
           ),

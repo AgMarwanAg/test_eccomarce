@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:test_eccomarce/config/style/app_colors.dart';
 import 'package:test_eccomarce/config/style/app_decoration.dart';
 import 'package:test_eccomarce/shared/extensions/size_ex.dart';
+import 'package:test_eccomarce/shared/models/product_model.dart';
 import 'package:test_eccomarce/shared/widgets/app_scaffold.dart';
 import 'package:test_eccomarce/shared/widgets/text_widget.dart';
 
 class ProductDetailsDescription extends StatelessWidget {
-  const ProductDetailsDescription({super.key});
+  final ProductModel product;
+  const ProductDetailsDescription({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -14,18 +16,18 @@ class ProductDetailsDescription extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TextWidget(
-          'COSRX',
+          product.category,
           style: AppTextStyle.s12W700.copyWith(color: AppColors.fontGreyColor),
         ),
-        TextWidget('Propolis Light Cream', style: AppTextStyle.s24W700),
+        TextWidget(product.title, style: AppTextStyle.s24W700),
         8.sizeH,
         Row(
           children: [
             Icon(Icons.star_rounded, color: AppColors.starColor, size: 14.sp),
-            TextWidget('4.8', style: AppTextStyle.s14W600),
+            TextWidget(product.rating.toString(), style: AppTextStyle.s14W600),
             8.sizeW,
             TextWidget(
-              '(120 Reviews)',
+              '(${product.reviewsCount} Reviews)',
               style: AppTextStyle.s14W600.copyWith(
                 color: AppColors.fontGreyColor,
               ),
@@ -36,10 +38,13 @@ class ProductDetailsDescription extends StatelessWidget {
         Text.rich(
           TextSpan(
             children: [
-              TextSpan(text: '\$32.00 USD', style: AppTextStyle.s24W700),
+              TextSpan(
+                text: '${product.price} USD',
+                style: AppTextStyle.s24W700,
+              ),
               WidgetSpan(child: 6.sizeW),
               TextSpan(
-                text: '\$40.00 USD',
+                text: '${product.priceAfterDiscount} USD',
                 style: AppTextStyle.s14W400.copyWith(
                   color: AppColors.textFontGreyColor,
                   decoration: TextDecoration.lineThrough,
@@ -55,7 +60,7 @@ class ProductDetailsDescription extends StatelessWidget {
                   ),
                   decoration: AppDecoration.discountCard,
                   child: TextWidget(
-                    '-20%',
+                    '-${product.discountPercentage}%',
                     style: AppTextStyle.s12W700.copyWith(
                       color: AppColors.primaryDarkColor,
                     ),
@@ -68,7 +73,6 @@ class ProductDetailsDescription extends StatelessWidget {
           maxLines: 1,
           overflow: TextOverflow.clip,
         ),
-      
       ],
     );
   }

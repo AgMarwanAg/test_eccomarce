@@ -31,13 +31,14 @@ class ProductModelAdapter extends TypeAdapter<ProductModel> {
       weight: fields[11] as int,
       thumbnail: fields[12] as String,
       images: (fields[13] as List).cast<String>(),
+      reviewsCount: fields[14] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, ProductModel obj) {
     writer
-      ..writeByte(14)
+      ..writeByte(15)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -65,7 +66,9 @@ class ProductModelAdapter extends TypeAdapter<ProductModel> {
       ..writeByte(12)
       ..write(obj.thumbnail)
       ..writeByte(13)
-      ..write(obj.images);
+      ..write(obj.images)
+      ..writeByte(14)
+      ..write(obj.reviewsCount);
   }
 
   @override

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_eccomarce/config/style/app_colors.dart';
 import 'package:test_eccomarce/config/style/app_decoration.dart';
 import 'package:test_eccomarce/core/faker/dummy_network_image.dart';
+import 'package:test_eccomarce/features/product_details/presentation/cubit/get_product_details_cubit.dart';
+import 'package:test_eccomarce/features/product_details/presentation/product_details_shimmer.dart';
 import 'package:test_eccomarce/features/product_details/presentation/widgets/product_details_appbar_widget.dart';
 import 'package:test_eccomarce/features/product_details/presentation/widgets/product_details_carousel.dart';
 import 'package:test_eccomarce/features/product_details/presentation/widgets/product_details_description.dart';
@@ -11,6 +14,7 @@ import 'package:test_eccomarce/shared/extensions/widget_ex.dart';
 import 'package:test_eccomarce/shared/widgets/app_fav_widget.dart';
 import 'package:test_eccomarce/shared/widgets/app_scaffold.dart';
 import 'package:test_eccomarce/shared/widgets/buttons/primary_btn.dart';
+import 'package:test_eccomarce/shared/widgets/state_widgets/failure_widget.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   final int id;
@@ -26,58 +30,94 @@ class ProductDetailsScreen extends StatefulWidget {
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   @override
+  void initState() {
+    super.initState();
+    context.read<GetProductDetailsCubit>().getData(widget.id);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AppScaffold(
       padding: 24.w,
-      body: Column(
-        children: [
-          ProductDetailsAppBarWidget(),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ProductDetailsCarousel(
-                    images: [
-                      DummyImage.placeholderImage(),
-                      DummyImage.placeholderImage(),
-                      DummyImage.placeholderImage(),
-                      DummyImage.placeholderImage(),
-                    ],
-                  ),
-                  16.sizeH,
-                  ProductDetailsDescription(),
-                  24.sizeH,
+      body: BlocBuilder<GetProductDetailsCubit, GetProductDetailsState>(
+        builder: (context, state) {
+          if (state is GetProductDetailsLoading) {
+            return ProductDetailsShimmer();
+          }
 
-                  ProductSizesWidget(sizes: ["size1", "size2"]),
+          if (state is GetProductDetailsSuccess) {
+            return RefreshIndicator(
+              onRefresh: () async =>
+                  context.read<GetProductDetailsCubit>().getData(widget.id),
+              child: Column(
+                children: [
+                  ProductDetailsAppBarWidget(),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      physics: AlwaysScrollableScrollPhysics(),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ProductDetailsCarousel(images: state.product.images),
+                          16.sizeH,
+                          ProductDetailsDescription(product: state.product),
+                          24.sizeH,
+                          ProductSizesWidget(sizes: state.product.tags),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
-            ),
+            );
+          }
+
+          if (state is GetProductDetailsFailure) {
+            return FailureWidget(
+              exception: state.exception,
+              onTap: () {
+                context.read<GetProductDetailsCubit>().getData(widget.id);
+              },
+            );
+          }
+
+          return SizedBox();
+        },
+      ),
+      bottomNavigationBar:
+          BlocBuilder<GetProductDetailsCubit, GetProductDetailsState>(
+            builder: (context, state) {
+              if (state is! GetProductDetailsSuccess) {
+                return SizedBox();
+              }
+
+              return Container(
+                padding: EdgeInsets.all(24.sp),
+                decoration: AppDecoration.navBarDecoration.copyWith(
+                  color: AppColors.whiteColor.withValues(alpha: 0.80),
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 56.w,
+                      height: 56.w,
+                      padding: EdgeInsets.all(10.w),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: AppColors.appDivider,
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(16.r),
+                      ),
+                      child: AppFavWidget(isFav: false),
+                    ),
+                    16.sizeW,
+                    PrimaryBtn(text: 'Add to Cart').expanded(),
+                  ],
+                ),
+              );
+            },
           ),
-        ],
-      ),
-      bottomNavigationBar: Container(
-        padding: EdgeInsets.all(24.sp),
-        decoration: AppDecoration.navBarDecoration.copyWith(
-          color: AppColors.whiteColor.withValues(alpha: 0.80),
-        ),
-        child: Row(
-          children: [
-            Container(
-              width: 56.w,
-              height: 56.w,
-              padding: EdgeInsets.all(10.w),
-              decoration: BoxDecoration(
-                border: Border.all(color: AppColors.appDivider, width: 2),
-                borderRadius: BorderRadius.circular(16.r),
-              ),
-              child: AppFavWidget(isFav: false),
-            ),
-            16.sizeW,
-            PrimaryBtn(text: 'Add to Cart').expanded(),
-          ],
-        ),
-      ),
     );
   }
 }
