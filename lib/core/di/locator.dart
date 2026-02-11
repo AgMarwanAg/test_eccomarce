@@ -2,6 +2,8 @@ import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_eccomarce/features/home/features/home_tab/data/home_api.dart';
 import 'package:test_eccomarce/features/home/features/home_tab/data/repo/home_repo.dart';
+import 'package:test_eccomarce/features/home/features/home_tab/domain/repositories/home_repository.dart';
+import 'package:test_eccomarce/features/home/features/home_tab/domain/usecases/get_home_usecase.dart';
 import 'package:test_eccomarce/features/home/features/home_tab/presentation/cubit/get_home_cubit.dart';
 import '../../shared/cubits/session_cubit/session_cubit.dart';
 import '../../shared/dio_client/dio_client.dart';
@@ -24,6 +26,7 @@ Future<void> setUpLocator() async {
   //home
 
   sl.registerLazySingleton<HomeApi>(() => HomeApi(sl<DioClient>()));
-  sl.registerLazySingleton<HomeRepo>(() => HomeRepoImpl(sl<HomeApi>()));
-  sl.registerFactory<GetHomeCubit>(() => GetHomeCubit(sl<HomeRepo>()));
+  sl.registerLazySingleton<HomeRepository>(() => HomeRepositoryImpl(sl<HomeApi>()));
+  sl.registerLazySingleton<GetHomeUseCase>(() => GetHomeUseCase(sl<HomeRepository>()));
+  sl.registerFactory<GetHomeCubit>(() => GetHomeCubit(sl<GetHomeUseCase>()));
 }

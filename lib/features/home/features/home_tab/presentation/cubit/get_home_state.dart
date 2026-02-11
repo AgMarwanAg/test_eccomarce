@@ -12,7 +12,7 @@ final class GetHomeInitial extends GetHomeState {}
 final class GetHomeLoading extends GetHomeState {}
 
 final class GetHomeSuccess extends GetHomeState {
-  final HomeModel home;
+  final HomeEntity home;
 
   const GetHomeSuccess(this.home);
 }
