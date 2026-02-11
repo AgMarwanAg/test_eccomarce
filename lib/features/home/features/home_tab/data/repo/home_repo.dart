@@ -16,7 +16,9 @@ class HomeRepoImpl implements HomeRepo {
   Future<Result<HomeModel>> getHome() {
     return Result.handleApiResponse(
       _api.getHome(),
-      (data) => HomeModel.fromJson(ResponseModel.fromJson(data).data),
+      (data) {
+         return HomeModel.fromJson(ResponseModel.fromJson(data).data);
+      },
     );
   }
 }

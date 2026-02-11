@@ -1,8 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:test_eccomarce/shared/widgets/images/svg_image.dart';
-import '../../../config/style/app_colors.dart';
+ import '../../../config/style/app_colors.dart';
 import '../../extensions/string_ex.dart';
 
 import '../shimmer/skeleton_widget.dart';
@@ -129,7 +128,7 @@ class NetWorkImageWidget extends StatelessWidget {
         width: width,
         child: DecoratedBox(
           decoration: BoxDecoration(color: AppColors.whiteColor),
-          child: SvgAsset(AppIcons.exclamationMark,fit: BoxFit.contain,),
+          child: AssetImageWidget(AppImages.logo, fit: fit ?? BoxFit.contain),
         ),
       ),
     );

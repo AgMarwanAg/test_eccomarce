@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:test_eccomarce/config/style/app_colors.dart';
 import 'package:test_eccomarce/config/style/app_decoration.dart';
 import 'package:test_eccomarce/core/faker/dummy_network_image.dart';

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:test_eccomarce/config/style/app_colors.dart';
 import 'package:test_eccomarce/config/style/app_decoration.dart';
 import 'package:test_eccomarce/shared/extensions/size_ex.dart';
-import 'package:test_eccomarce/shared/models/product_model.dart';
 import 'package:test_eccomarce/shared/widgets/app_scaffold.dart';
 import 'package:test_eccomarce/shared/widgets/text_widget.dart';
 

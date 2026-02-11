@@ -18,7 +18,7 @@ class DioClient{
 
   DioClient() {
     BaseOptions options = BaseOptions(
-      baseUrl: "${FlavorConfig.instance.baseUrl}/api",
+      baseUrl: FlavorConfig.instance.baseUrl,
       connectTimeout: const Duration(seconds: 30),
       receiveTimeout: const Duration(seconds: 30),
       headers: {
@@ -31,10 +31,10 @@ class DioClient{
     _dio = Dio(options);
     _dio.interceptors.addAll([
       LoggingInterceptor(),
-      AuthInterceptor(),
-      LocalizationInterceptor(),
-      AppInfoInterceptor(),
-      ErrorInterceptor(),
+      // AuthInterceptor(),
+      // LocalizationInterceptor(),
+      // AppInfoInterceptor(),
+      // ErrorInterceptor(),
       // CustomInterceptor(),
     ]);
   }
