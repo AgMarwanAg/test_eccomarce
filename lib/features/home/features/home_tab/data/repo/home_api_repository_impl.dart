@@ -5,12 +5,14 @@ import 'package:test_eccomarce/features/home/features/home_tab/domain/repositori
 import 'package:test_eccomarce/shared/dio_client/response_model.dart';
 import 'package:test_eccomarce/shared/dio_client/result.dart';
 
-class HomeRepositoryImpl implements HomeRepository {
+/// API repository implementation - handles only remote data operations
+class HomeApiRepositoryImpl implements HomeRepository {
   final HomeApi _api;
-  HomeRepositoryImpl(this._api);
+
+  HomeApiRepositoryImpl(this._api);
 
   @override
-  Future<Result<HomeEntity>> getHome() {
+  Future<Result<HomeEntity>> getHome() async {
     return Result.handleApiResponse(_api.getHome(), (data) {
       final model = HomeModel.fromJson(ResponseModel.fromJson(data).data);
       return model.toEntity();

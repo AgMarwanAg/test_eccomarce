@@ -1,7 +1,11 @@
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:test_eccomarce/core/database/database_helper.dart';
+import 'package:test_eccomarce/features/home/features/home_tab/data/datasources/home_local_data_source.dart';
 import 'package:test_eccomarce/features/home/features/home_tab/data/home_api.dart';
-import 'package:test_eccomarce/features/home/features/home_tab/data/repo/home_repo.dart';
+import 'package:test_eccomarce/features/home/features/home_tab/data/repo/home_api_repository_impl.dart';
+import 'package:test_eccomarce/features/home/features/home_tab/data/repo/home_local_repository_impl.dart';
+import 'package:test_eccomarce/features/home/features/home_tab/data/repo/home_repository_controller.dart';
 import 'package:test_eccomarce/features/home/features/home_tab/domain/repositories/home_repository.dart';
 import 'package:test_eccomarce/features/home/features/home_tab/domain/usecases/get_home_usecase.dart';
 import 'package:test_eccomarce/features/home/features/home_tab/presentation/cubit/get_home_cubit.dart';
@@ -25,8 +29,30 @@ Future<void> setUpLocator() async {
 
   //home
 
+  sl.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper.instance);
   sl.registerLazySingleton<HomeApi>(() => HomeApi(sl<DioClient>()));
-  sl.registerLazySingleton<HomeRepository>(() => HomeRepositoryImpl(sl<HomeApi>()));
-  sl.registerLazySingleton<GetHomeUseCase>(() => GetHomeUseCase(sl<HomeRepository>()));
+  sl.registerLazySingleton<HomeLocalDataSource>(
+    () => HomeLocalDataSourceImpl(sl<DatabaseHelper>()),
+  );
+
+  sl.registerLazySingleton<HomeRepository>(
+    () => HomeApiRepositoryImpl(sl<HomeApi>()),
+    instanceName: 'apiRepo',
+  );
+
+  sl.registerLazySingleton<HomeLocalRepositoryImpl>(
+    () => HomeLocalRepositoryImpl(sl<HomeLocalDataSource>()),
+  );
+
+  sl.registerLazySingleton<HomeRepository>(
+    () => HomeRepositoryController(
+      api: sl<HomeApi>(),
+      localDataSource: sl<HomeLocalDataSource>(),
+    ),
+  );
+
+  sl.registerLazySingleton<GetHomeUseCase>(
+    () => GetHomeUseCase(sl<HomeRepository>()),
+  );
   sl.registerFactory<GetHomeCubit>(() => GetHomeCubit(sl<GetHomeUseCase>()));
 }

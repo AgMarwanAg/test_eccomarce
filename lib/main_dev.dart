@@ -1,4 +1,5 @@
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -11,7 +12,7 @@ void main() async {
    FlavorConfig(baseUrl: 'https://dummyjson.com', flavor: Flavor.dev);
   // await Firebase.initializeApp(options: dev.DefaultFirebaseOptions.currentPlatform);
   await init();
-  // EasyLocalization.logger.enableBuildModes = [];
+  EasyLocalization.logger.enableBuildModes = [];
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
   runApp((const MainApp()));
