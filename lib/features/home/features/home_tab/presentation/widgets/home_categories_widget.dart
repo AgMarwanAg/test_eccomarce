@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:test_eccomarce/config/style/app_colors.dart';
 import 'package:test_eccomarce/config/style/app_decoration.dart';
@@ -9,7 +8,9 @@ import 'package:test_eccomarce/shared/widgets/horizontal_list.dart';
 import 'package:test_eccomarce/shared/widgets/text_widget.dart';
 
 class HomeCategoriesWidget extends StatefulWidget {
-  const HomeCategoriesWidget({super.key});
+  final List<CategoryModel> categories;
+
+  const HomeCategoriesWidget({super.key,required this.categories});
 
   @override
   State<HomeCategoriesWidget> createState() => _HomeCategoriesWidgetState();
@@ -35,12 +36,12 @@ class _HomeCategoriesWidgetState extends State<HomeCategoriesWidget> {
         ),
         16.sizeH,
         HorizontalList(
-          itemCount: 10,
+          itemCount: widget.categories.length,
           spacing: 12.w,
           itemBuilder: (context, index) => _BuildItem(
-            CategoryModel.fromDummyList()[index],
+            widget.categories[index],
             isSelected:
-                selectedCategory == CategoryModel.fromDummyList()[index],
+                selectedCategory == widget.categories[index],
             onTap: (category) {
               setState(() {
                 selectedCategory = category;

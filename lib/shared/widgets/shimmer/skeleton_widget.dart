@@ -14,10 +14,12 @@ class SkeletonWidget extends StatelessWidget {
     return Skeletonizer(
       enabled: enabled,
       ignorePointers: true,
+      ignoreContainers: false,
       containersColor: AppColors.highlightColor,
       effect: ShimmerEffect(
         baseColor: AppColors.baseColor,
         highlightColor: AppColors.highlightColor,
+        
       ),
       child: child,
     );

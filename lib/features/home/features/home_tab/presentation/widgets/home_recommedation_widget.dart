@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:test_eccomarce/config/style/app_colors.dart';
 import 'package:test_eccomarce/config/style/app_decoration.dart';
-import 'package:test_eccomarce/core/faker/dummy_network_image.dart';
 import 'package:test_eccomarce/shared/extensions/_export.dart';
 import 'package:test_eccomarce/shared/models/product_model.dart';
 import 'package:test_eccomarce/shared/widgets/images/network_image.dart';
@@ -11,10 +10,12 @@ import 'package:test_eccomarce/shared/widgets/text_widget.dart';
 import '../../../../../../shared/widgets/horizontal_list.dart';
 
 class HomeRecommendedWidget extends StatelessWidget {
-  const HomeRecommendedWidget({super.key});
+  final List<ProductModel> products;
+  const HomeRecommendedWidget({super.key, required this.products});
 
   @override
   Widget build(BuildContext context) {
+    List<ProductModel> products = this.products..shuffle();
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -32,12 +33,10 @@ class HomeRecommendedWidget extends StatelessWidget {
         ),
         16.sizeH,
         HorizontalList(
-          itemCount: 10,
+          itemCount: products.length,
           spacing: 16.w,
-          itemBuilder: (context, index) => _BuildItem(
-            product: ProductModel.fromDummyList()[index],
-            isFavorate: index % 2 == 0,
-          ),
+          itemBuilder: (context, index) =>
+              _BuildItem(product: products[index], isFavorate: index % 2 == 0),
         ),
       ],
     );
@@ -68,7 +67,7 @@ class _BuildItemState extends State<_BuildItem> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               NetWorkImageWidget(
-                url: DummyImage.placeholderImage(),
+                url: widget.product.thumbnail,
                 width: 112.w,
                 height: 112.w,
                 alignment: Alignment.center,

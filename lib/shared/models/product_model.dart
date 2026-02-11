@@ -14,6 +14,8 @@ class ProductModel extends Equatable {
   final String brand;
   final String sku;
   final int weight;
+  final String thumbnail;
+  final List<String> images;
 
   const ProductModel({
     required this.id,
@@ -28,6 +30,8 @@ class ProductModel extends Equatable {
     required this.brand,
     required this.sku,
     required this.weight,
+    required this.thumbnail,
+    required this.images
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
@@ -45,6 +49,8 @@ class ProductModel extends Equatable {
     brand: json['brand'] ?? '',
     sku: json['sku'] ?? '',
     weight: ParseUtils.asInt(json['weight']),
+    thumbnail: json['thumbnail'],
+    images: List.from(json['images'])
   );
 }
 
@@ -71,6 +77,8 @@ class ProductModel extends Equatable {
         brand: 'brand',
         sku: 'sku',
         weight: 100,
+        images: [],
+        thumbnail: ''
       ),
     );
   }

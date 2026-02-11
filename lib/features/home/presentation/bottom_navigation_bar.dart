@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../config/style/app_decoration.dart';
-import '../../../shared/extensions/_export.dart';
 import '../../../shared/widgets/images/svg_image.dart';
 
 class BottomNavigatorBarWidget extends StatelessWidget {

@@ -24,8 +24,8 @@ class AppColors {
   //Button colors
 
   //shimmer colors
-  static Color highlightColor = primaryColor.withValues(alpha: 0.1);
-  static const Color baseColor = Color(0xFFFFFFFF);
+  static Color highlightColor = Color(0xFFF4F6F8);
+  static const Color baseColor = Color(0xFFE8EBEF);
 
   //other colors
   static const Color successColor = Color(0xF233A83F);
@@ -34,5 +34,5 @@ class AppColors {
   //border colors
   static const Color textFieldBorderColor = primaryColor;
 
-   static const Color starColor=  Color(0xFFFACC15);
+  static const Color starColor = Color(0xFFFACC15);
 }

@@ -15,7 +15,7 @@ class ResponseModel<T> {
 
   /// Constructor to create a [ResponseModel] instance from JSON data.
   ResponseModel.fromJson(Map<String, dynamic> json) {
-    data = json['data'] as T?;
+    data = json as T?;
     message = json['message'] as String?;
     success = json['success'] as bool?;
   }
