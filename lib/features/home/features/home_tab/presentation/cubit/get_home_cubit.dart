@@ -18,7 +18,7 @@ class GetHomeCubit extends Cubit<GetHomeState>
 
   Future<void> getHome() async {
     emit(GetHomeLoading());
-    final result = await runCancellable(_getHomeUseCase());
+    final result = await runCancellable(_getHomeUseCase.call());
     if (result != null) {
       result.fold(
         onSuccess: (data) => emit(GetHomeSuccess(data)),

@@ -15,7 +15,6 @@ class HomeRecommendedWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<ProductModel> products = this.products..shuffle();
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
