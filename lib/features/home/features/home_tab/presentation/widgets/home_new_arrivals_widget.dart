@@ -10,6 +10,7 @@ import 'package:test_eccomarce/shared/widgets/images/network_image.dart';
 import 'package:test_eccomarce/shared/widgets/text_widget.dart';
 
 import '../../../../../../shared/widgets/horizontal_list.dart';
+import '../../../../../../shared/widgets/app_fav_widget.dart';
 
 class HomeNewArrivalsWidget extends StatelessWidget {
   const HomeNewArrivalsWidget({super.key});
@@ -121,30 +122,9 @@ class _BuildItemState extends State<_BuildItem> {
                 ),
               ],
             ),
-            GestureDetector(
-              onTap: () {
-                setState(() => isFav = !isFav);
-              },
-              child: AnimatedSwitcher(
-                duration: const Duration(milliseconds: 250),
-                transitionBuilder: (child, animation) {
-                  return ScaleTransition(
-                    scale: Tween<double>(begin: 0.6, end: 1.0).animate(
-                      CurvedAnimation(
-                        parent: animation,
-                        curve: Curves.easeOutBack,
-                      ),
-                    ),
-                    child: FadeTransition(opacity: animation, child: child),
-                  );
-                },
-                child: Icon(
-                  isFav ? Icons.favorite : Icons.favorite_border_outlined,
-                  key: ValueKey(isFav),
-                  color: isFav ? AppColors.primaryColor : AppColors.blackColor,
-                  size: 18.sp,
-                ),
-              ),
+            AppFavWidget(
+              isFav: isFav,
+              onChanged: (value) => setState(() => isFav = value),
             ),
           ],
         ),
