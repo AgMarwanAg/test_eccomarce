@@ -48,6 +48,9 @@ class ProductModel extends Equatable {
   @HiveField(13)
   final List<String> images;
 
+  @HiveField(14)
+  final int reviewsCount;
+
   const ProductModel({
     required this.id,
     required this.title,
@@ -63,6 +66,7 @@ class ProductModel extends Equatable {
     required this.weight,
     required this.thumbnail,
     required this.images,
+    required this.reviewsCount,
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
@@ -81,16 +85,17 @@ class ProductModel extends Equatable {
       weight: ParseUtils.asInt(json['weight']),
       thumbnail: json['thumbnail'],
       images: List.from(json['images']),
+      reviewsCount: (json['reviews'] as List).length,
     );
   }
-
+  String get priceAfterDiscount =>
+      (price * (1 - discountPercentage / 100)).toStringAsFixed(2);
   static List<ProductModel> fromList(List<dynamic> list) {
     return list
         .map((e) => ProductModel.fromJson(e as Map<String, dynamic>))
         .toList();
   }
 
-  // ---------- Dummy List ----------
   static List<ProductModel> fromDummyList([int length = 10]) {
     return List.generate(
       length,
@@ -109,6 +114,7 @@ class ProductModel extends Equatable {
         weight: 100,
         images: [],
         thumbnail: '',
+        reviewsCount: 1,
       ),
     );
   }

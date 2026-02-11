@@ -9,6 +9,9 @@ import 'package:test_eccomarce/features/home/features/home_tab/data/repo/home_re
 import 'package:test_eccomarce/features/home/features/home_tab/domain/repositories/home_repository.dart';
 import 'package:test_eccomarce/features/home/features/home_tab/domain/usecases/get_home_usecase.dart';
 import 'package:test_eccomarce/features/home/features/home_tab/presentation/cubit/get_home_cubit.dart';
+import 'package:test_eccomarce/features/product_details/data/product_details_apis.dart';
+import 'package:test_eccomarce/features/product_details/data/repo/product_details_repo.dart';
+import 'package:test_eccomarce/features/product_details/presentation/cubit/get_product_details_cubit.dart';
 import '../../shared/cubits/session_cubit/session_cubit.dart';
 import '../../shared/dio_client/dio_client.dart';
 import '../caching/shared_pref_services.dart';
@@ -55,4 +58,14 @@ Future<void> setUpLocator() async {
     () => GetHomeUseCase(sl<HomeRepository>()),
   );
   sl.registerFactory<GetHomeCubit>(() => GetHomeCubit(sl<GetHomeUseCase>()));
+
+  sl.registerLazySingleton<ProductDetailsApis>(
+    () => ProductDetailsApis(sl<DioClient>()),
+  );
+  sl.registerLazySingleton<ProductDetailsRepo>(
+    () => ProductDetailsRepoImpl(sl<ProductDetailsApis>()),
+  );
+  sl.registerFactory<GetProductDetailsCubit>(
+    () => GetProductDetailsCubit(sl<ProductDetailsRepo>()),
+  );
 }

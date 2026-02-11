@@ -2,7 +2,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+ 
 import 'config/flavors/flavor_config.dart';
 import 'core/init.dart';
 import 'main_app.dart';
@@ -14,8 +14,7 @@ void main() async {
   await init();
   EasyLocalization.logger.enableBuildModes = [];
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-
-  runApp((const MainApp()));
+   runApp((const MainApp()));
 }
 
 //TO run this app or build it use one of these commands
@@ -36,3 +35,6 @@ void main() async {
 
 // To build the ios in prod mode, run the following command:
 //flutter build ipa -t lib/main_prod.dart --flavor=prod
+
+
+//flutter pub run build_runner build --delete-conflicting-outputs

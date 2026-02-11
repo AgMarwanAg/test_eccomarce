@@ -17,6 +17,7 @@ class _ProductSizesWidgetState extends State<ProductSizesWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TextWidget('Select size', style: AppTextStyle.s14W600),
         12.sizeH,
