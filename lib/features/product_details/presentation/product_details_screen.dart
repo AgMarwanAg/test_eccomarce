@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_eccomarce/config/style/app_colors.dart';
 import 'package:test_eccomarce/config/style/app_decoration.dart';
 import 'package:test_eccomarce/core/di/locator.dart';
+import 'package:test_eccomarce/features/cart/data/models/cart_model.dart';
+import 'package:test_eccomarce/features/cart/presentation/bloc/cart_bloc.dart';
+import 'package:test_eccomarce/features/cart/presentation/widgets/counter_widget.dart';
 import 'package:test_eccomarce/features/home/features/home_tab/presentation/cubit/get_home_cubit.dart';
 import 'package:test_eccomarce/features/home/features/home_tab/presentation/widgets/home_recommedation_widget.dart';
 import 'package:test_eccomarce/features/product_details/presentation/cubit/get_product_details_cubit.dart';
@@ -16,6 +19,7 @@ import 'package:test_eccomarce/shared/extensions/size_ex.dart';
 import 'package:test_eccomarce/shared/extensions/widget_ex.dart';
 import 'package:test_eccomarce/shared/widgets/app_fav_widget.dart';
 import 'package:test_eccomarce/shared/widgets/app_scaffold.dart';
+import 'package:test_eccomarce/shared/widgets/badge_widget.dart';
 import 'package:test_eccomarce/shared/widgets/buttons/primary_btn.dart';
 import 'package:test_eccomarce/shared/widgets/state_widgets/failure_widget.dart';
 
@@ -132,7 +136,31 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       child: AppFavWidget(isFav: false),
                     ),
                     16.sizeW,
-                    PrimaryBtn(text: 'Add to Cart').expanded(),
+                    Stack(
+                      clipBehavior: Clip.none,
+                      children: [
+                        PrimaryBtn(
+                          text: 'Add to Cart',
+                          onPressed: () {
+                            context.read<CartBloc>().add(
+                              AddCartItem(
+                                CartItem(product: state.product, quantity: 1),
+                              ),
+                            );
+                          },
+                        ),
+                        Positioned(
+                          top: -10,
+                          right: -10,
+                          child: BadgeWidget(
+                            count: context
+                                .watch<CartBloc>()
+                                .state
+                                .getProductQuantity(state.product.id),
+                          ),
+                        ),
+                      ],
+                    ).expanded(),
                   ],
                 ),
               );
