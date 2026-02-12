@@ -33,6 +33,12 @@ class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController _searchController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    context.read<SearchCubit>().search(null);
+  }
+
+  @override
   void dispose() {
     _debounce.dispose();
     _searchController.dispose();
@@ -108,7 +114,8 @@ class _SearchScreenState extends State<SearchScreen> {
                         ),
                         itemCount: state.hasReachedMax
                             ? state.products.length
-                            : state.products.length + 3,
+                            : state.products.length +
+                                  (state.products.length % 2 == 0 ? 2 : 3),
                         itemBuilder: (context, index) {
                           if (index >= state.products.length) {
                             return SkeletonWidget(
