@@ -15,6 +15,8 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [CartAppBarWidget(), 25.sizeH, CartBodyWidget()]);
+    return Column(
+      children: [CartAppBarWidget(), 25.sizeH, CartBodyWidget()],
+    ).paddingHorizontal(24.w);
   }
 }

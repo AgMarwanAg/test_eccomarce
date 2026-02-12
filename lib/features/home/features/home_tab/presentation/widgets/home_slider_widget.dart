@@ -9,7 +9,8 @@ import 'package:test_eccomarce/shared/widgets/text_widget.dart';
 
 class HomeSliderWidget extends StatelessWidget {
   final List<ProductModel> products;
-  const HomeSliderWidget({super.key, required this.products});
+  final bool isLoading;
+  const HomeSliderWidget({super.key, required this.products,required this.isLoading});
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +25,10 @@ class HomeSliderWidget extends StatelessWidget {
           padding: EdgeInsets.all(20.w),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(28.r),
-            gradient: LinearGradient(
+            gradient:isLoading?null:  LinearGradient(
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
-              colors: index % 2 == 0
+              colors:  index % 2 == 0
                   ? [AppColors.primaryColor, AppColors.textPrimary]
                   : [Color(0xFFAC9F97), Color(0xFFD4C5B9)],
             ),

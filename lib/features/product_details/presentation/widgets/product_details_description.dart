@@ -39,12 +39,12 @@ class ProductDetailsDescription extends StatelessWidget {
           TextSpan(
             children: [
               TextSpan(
-                text: '${product.price} USD',
+                text: '${product.priceAfterDiscount} USD',
                 style: AppTextStyle.s24W700,
               ),
               WidgetSpan(child: 6.sizeW),
               TextSpan(
-                text: '${product.priceAfterDiscount} USD',
+                text: '${product.price} USD',
                 style: AppTextStyle.s14W400.copyWith(
                   color: AppColors.textFontGreyColor,
                   decoration: TextDecoration.lineThrough,

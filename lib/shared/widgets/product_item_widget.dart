@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:test_eccomarce/config/style/app_colors.dart';
 import 'package:test_eccomarce/config/style/app_decoration.dart';
+import 'package:test_eccomarce/features/cart/data/models/cart_model.dart';
+import 'package:test_eccomarce/features/cart/presentation/bloc/cart_bloc.dart';
 import 'package:test_eccomarce/features/product_details/presentation/product_details_screen.dart';
 import 'package:test_eccomarce/shared/extensions/_export.dart';
 import 'package:test_eccomarce/shared/models/product_model.dart';
@@ -71,16 +74,25 @@ class _ProductItemWidgetState extends State<ProductItemWidget> {
                         "${widget.product.price} USD",
                         style: AppTextStyle.s12W700,
                       ),
-                      Container(
-                        padding: EdgeInsets.all(4.w),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: AppColors.blackColor,
-                        ),
-                        child: Icon(
-                          Icons.add,
-                          color: AppColors.whiteColor,
-                          size: 18.sp,
+                      GestureDetector(
+                        onTap: () {
+                          context.read<CartBloc>().add(
+                            AddCartItem(
+                              CartItem(product: widget.product, quantity: 1),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(4.w),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.blackColor,
+                          ),
+                          child: Icon(
+                            Icons.add,
+                            color: AppColors.whiteColor,
+                            size: 18.sp,
+                          ),
                         ),
                       ),
                     ],

@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_eccomarce/config/style/app_colors.dart';
 import 'package:test_eccomarce/features/cart/data/models/cart_model.dart';
+import 'package:test_eccomarce/features/cart/presentation/bloc/cart_bloc.dart';
+import 'package:test_eccomarce/features/cart/presentation/widgets/counter_widget.dart';
+import 'package:test_eccomarce/shared/extensions/size_ex.dart';
+import 'package:test_eccomarce/shared/widgets/app_scaffold.dart';
 import 'package:test_eccomarce/shared/widgets/images/network_image.dart';
+import 'package:test_eccomarce/shared/widgets/text_widget.dart';
 
 class CartProductItem extends StatelessWidget {
   final CartItem item;
@@ -9,9 +16,72 @@ class CartProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        NetWorkImageWidget(url: item.product.thumbnail),
-        Expanded(child: Column(children: [])),
+        DecoratedBox(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16.r),
+            border: Border.all(color: AppColors.navBarColor, width: 5.w),
+          ),
+          child: NetWorkImageWidget(
+            url: item.product.thumbnail,
+            width: 64.w,
+            height: 64.w,
+          ),
+        ),
+        16.sizeW,
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TextWidget(
+                item.product.title,
+                style: AppTextStyle.s15W500,
+                maxLines: 2,
+              ),
+              TextWidget(
+                item.product.category,
+                style: AppTextStyle.s12W400.copyWith(
+                  color: AppColors.hintColors,
+                ),
+              ),
+              12.sizeH,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextWidget(
+                        "${item.product.price} USD",
+                        style: AppTextStyle.s10W400.copyWith(
+                          decoration: TextDecoration.lineThrough,
+                          color: AppColors.hintColors,
+                          decorationThickness: 0.5,
+                        ),
+                      ),
+                      TextWidget(
+                        "${item.product.priceAfterDiscount} USD",
+                        style: AppTextStyle.s14W600,
+                      ),
+                    ],
+                  ),
+                  CounterWidget(
+                    onAdd: () {
+                      context.read<CartBloc>().add(AddCartItem(item));
+                    },
+                    onRemove: () {
+                      context.read<CartBloc>().add(
+                        DecreaseQuantityItem(item.product.id),
+                      );
+                    },
+                    quantity: item.quantity,
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
       ],
     );
   }
