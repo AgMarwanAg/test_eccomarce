@@ -16,8 +16,4 @@ class InternetConnectionService {
       yield hasInternet;
     }
   }
-
-  /// Initial check (useful for first build)
-  static Future<bool> get initialStatus =>
-      _checker.hasInternetAccess;
 }
