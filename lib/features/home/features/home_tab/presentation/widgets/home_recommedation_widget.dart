@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:test_eccomarce/config/style/app_colors.dart';
-import 'package:test_eccomarce/config/style/app_decoration.dart';
-import 'package:test_eccomarce/features/product_details/presentation/product_details_screen.dart';
 import 'package:test_eccomarce/shared/extensions/_export.dart';
 import 'package:test_eccomarce/shared/models/product_model.dart';
-import 'package:test_eccomarce/shared/widgets/images/network_image.dart';
 import 'package:test_eccomarce/shared/widgets/product_item_widget.dart';
 import 'package:test_eccomarce/shared/widgets/text_widget.dart';
 

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:test_eccomarce/config/style/app_colors.dart';
-import 'package:test_eccomarce/core/faker/dummy_network_image.dart';
 import 'package:test_eccomarce/shared/extensions/_export.dart';
 import 'package:test_eccomarce/shared/models/product_model.dart';
 import 'package:test_eccomarce/shared/widgets/images/network_image.dart';
@@ -10,7 +9,8 @@ import 'package:test_eccomarce/shared/widgets/text_widget.dart';
 import '../../../../../../shared/widgets/horizontal_list.dart';
 
 class HomeBlogWidget extends StatelessWidget {
-  const HomeBlogWidget({super.key});
+  final List<ProductModel> products;
+  const HomeBlogWidget({super.key, required this.products});
 
   @override
   Widget build(BuildContext context) {
@@ -36,10 +36,10 @@ class HomeBlogWidget extends StatelessWidget {
             ],
           ),
           HorizontalList(
-            itemCount: 2,
+            itemCount: products.length,
             spacing: 12.w,
             itemBuilder: (context, index) =>
-                _BuildItem(product: ProductModel.fromDummyList()[index]),
+                _BuildItem(product: products[index]),
           ),
         ],
       ),
@@ -64,7 +64,7 @@ class _BuildItemState extends State<_BuildItem> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           NetWorkImageWidget(
-            url: DummyImage.placeholderImage(),
+            url: widget.product.thumbnail,
             width: double.infinity,
             height: 180.w,
             alignment: Alignment.center,
