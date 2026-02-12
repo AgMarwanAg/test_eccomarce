@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:test_eccomarce/features/cart/presentation/bloc/cart_bloc.dart';
+import 'package:test_eccomarce/shared/widgets/badge_widget.dart';
+import 'package:test_eccomarce/shared/widgets/text_widget.dart';
 import '../../../config/style/app_decoration.dart';
 import '../../../shared/widgets/images/svg_image.dart';
 
@@ -32,11 +36,32 @@ class BottomNavigatorBarWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: List.generate(
           _icons.length,
-          (index) => _BottomNavItem(
-            icon: _icons[index],
-            selected: selectedIndex == index,
-            onTap: () => onIndexChanged(index),
-          ),
+          (index) => _icons[index] == AppIcons.cart
+              ? BlocBuilder<CartBloc, CartState>(
+                  builder: (context, state) {
+                    return Stack(
+                      clipBehavior: Clip.none,
+                      alignment: AlignmentDirectional.topEnd,
+                      children: [
+                        _BottomNavItem(
+                          icon: _icons[index],
+                          selected: selectedIndex == index,
+                          onTap: () => onIndexChanged(index),
+                        ),
+                        PositionedDirectional(
+                          top: -10,
+                          end: -10,
+                          child: BadgeWidget(count: state.getCartItemCount()),
+                        ),
+                      ],
+                    );
+                  },
+                )
+              : _BottomNavItem(
+                  icon: _icons[index],
+                  selected: selectedIndex == index,
+                  onTap: () => onIndexChanged(index),
+                ),
         ),
       ),
     );

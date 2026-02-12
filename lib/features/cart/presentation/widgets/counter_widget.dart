@@ -22,7 +22,7 @@ class CounterWidget extends StatelessWidget {
       width: 100.w,
       height: 35.h,
       decoration: BoxDecoration(
-        color: AppColors.homeBlogBGColor,
+        border: Border.all(color: AppColors.hintColors),
         borderRadius: BorderRadius.circular(50.r),
       ),
       child: Row(
