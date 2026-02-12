@@ -29,6 +29,7 @@ class HomeShimmer extends StatelessWidget {
               maxExtentValue: 89.h,
             ),
           ),
+          SliverToBoxAdapter(child: 16.sizeH),
           SliverToBoxAdapter(
             child: HomeSliderWidget(
               ads: ProductModel.fromDummyList()

@@ -6,6 +6,8 @@ import 'package:test_eccomarce/features/home/presentation/cubit/home_navigation_
 import 'package:test_eccomarce/features/home/presentation/home_screen.dart';
 import 'package:test_eccomarce/features/product_details/presentation/cubit/get_product_details_cubit.dart';
 import 'package:test_eccomarce/features/product_details/presentation/product_details_screen.dart';
+import 'package:test_eccomarce/features/search/presentation/cubit/search_cubit.dart';
+import 'package:test_eccomarce/features/search/presentation/search_screen.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/text_widget.dart';
 import '../../logging/logger.dart';
@@ -30,6 +32,13 @@ abstract class AppRoutes {
       builder: (context, state) => BlocProvider(
         create: (context) => sl<GetProductDetailsCubit>(),
         child: ProductDetailsScreen(id: state.extra as int),
+      ),
+    ),
+    GoRoute(
+      path: SearchScreen.path,
+      builder: (context, state) => BlocProvider(
+        create: (context) => sl<SearchCubit>(),
+        child: SearchScreen(),
       ),
     ),
   ];

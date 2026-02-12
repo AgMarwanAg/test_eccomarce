@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:test_eccomarce/config/style/app_colors.dart';
 import 'package:test_eccomarce/config/style/app_decoration.dart';
+import 'package:test_eccomarce/features/search/presentation/search_screen.dart';
 import 'package:test_eccomarce/shared/extensions/_export.dart';
 import 'package:test_eccomarce/shared/widgets/text_widget.dart';
 
@@ -22,11 +23,16 @@ class HomeAppBarWidget extends StatelessWidget {
               TextWidget('Olivia', style: AppTextStyle.s20W700),
             ],
           ),
-          Container(
-            height: 40.h,
-            width: 40.w,
-            decoration: AppDecoration.whiteRounded,
-            child: Center(child: Icon(Icons.search_rounded, size: 20.w)),
+          GestureDetector(
+            onTap: () {
+              SearchScreen.push(context);
+            },
+            child: Container(
+              height: 40.h,
+              width: 40.w,
+              decoration: AppDecoration.whiteRounded,
+              child: Center(child: Icon(Icons.search_rounded, size: 20.w)),
+            ),
           ),
         ],
       ).paddingVertical(16.h),

@@ -10,7 +10,7 @@ class AppColors {
   static const Color primaryDarkColor = Color(0xFF15803D);
   static const Color primaryDisabledColor = Color(0xFFDCFCE7);
   static const Color scaffoldBackgroundColor = whiteColor;
-  static const Color appDivider = Color(0xFFF1F5F9);
+  static const Color appDivider = Color(0xFFF2F2F2);
   static const Color transparent = Colors.transparent;
   static const Color errorColor = Color(0xFFEF5350);
   static const Color navBarColor = Color(0xFFF6F6F6);

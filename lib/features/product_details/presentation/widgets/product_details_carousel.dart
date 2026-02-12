@@ -51,7 +51,7 @@ class _ProductDetailsCarouselState extends State<ProductDetailsCarousel> {
             return NetWorkImageWidget(
               url: widget.images[index],
               width: double.infinity,
-              fit: BoxFit.fill,
+              fit: BoxFit.contain,
             );
           },
         ),

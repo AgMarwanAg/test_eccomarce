@@ -10,11 +10,11 @@ import 'package:test_eccomarce/shared/widgets/text_widget.dart';
 
 class ProductItemWidget extends StatefulWidget {
   final ProductModel product;
-  final bool isFavorate;
+  final bool isFavorite;
   const ProductItemWidget({
     super.key,
     required this.product,
-    required this.isFavorate,
+    required this.isFavorite,
   });
 
   @override
@@ -22,7 +22,7 @@ class ProductItemWidget extends StatefulWidget {
 }
 
 class _ProductItemWidgetState extends State<ProductItemWidget> {
-  late bool isFav = widget.isFavorate;
+  late bool isFav = widget.isFavorite;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -113,23 +113,24 @@ class _ProductItemWidgetState extends State<ProductItemWidget> {
                 ),
               ),
             ),
-            PositionedDirectional(
-              start: 0,
-              top: 0,
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.r),
-                  color: AppColors.blackColor,
-                ),
-                child: Text(
-                  widget.product.brand,
-                  style: AppTextStyle.s10W500.copyWith(
-                    color: AppColors.whiteColor,
+            if (!widget.product.brand.isEmptyOrNull)
+              PositionedDirectional(
+                start: 0,
+                top: 0,
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.r),
+                    color: AppColors.blackColor,
+                  ),
+                  child: Text(
+                    widget.product.brand,
+                    style: AppTextStyle.s10W500.copyWith(
+                      color: AppColors.whiteColor,
+                    ),
                   ),
                 ),
               ),
-            ),
           ],
         ),
       ),

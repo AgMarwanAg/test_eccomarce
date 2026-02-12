@@ -45,6 +45,8 @@ class _HomeTabState extends State<HomeTab> with AutomaticKeepAliveClientMixin {
                     maxExtentValue: 89.h,
                   ),
                 ),
+                SliverToBoxAdapter(child: 16.sizeH),
+
                 SliverToBoxAdapter(
                   child: HomeSliderWidget(
                     ads: state.home.products.map((e) => e.thumbnail).toList(),
