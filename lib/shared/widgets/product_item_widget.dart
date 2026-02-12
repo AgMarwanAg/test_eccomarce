@@ -8,6 +8,7 @@ import 'package:test_eccomarce/features/cart/presentation/bloc/cart_bloc.dart';
 import 'package:test_eccomarce/features/product_details/presentation/product_details_screen.dart';
 import 'package:test_eccomarce/shared/extensions/_export.dart';
 import 'package:test_eccomarce/shared/models/product_model.dart';
+import 'package:test_eccomarce/shared/widgets/badge_widget.dart';
 import 'package:test_eccomarce/shared/widgets/images/network_image.dart';
 import 'package:test_eccomarce/shared/widgets/text_widget.dart';
 
@@ -82,17 +83,32 @@ class _ProductItemWidgetState extends State<ProductItemWidget> {
                             ),
                           );
                         },
-                        child: Container(
-                          padding: EdgeInsets.all(4.w),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: AppColors.blackColor,
-                          ),
-                          child: Icon(
-                            Icons.add,
-                            color: AppColors.whiteColor,
-                            size: 18.sp,
-                          ),
+                        child: Stack(
+                          clipBehavior: Clip.none,
+                          children: [
+                            Container(
+                              padding: EdgeInsets.all(4.w),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: AppColors.blackColor,
+                              ),
+                              child: Icon(
+                                Icons.add,
+                                color: AppColors.whiteColor,
+                                size: 18.sp,
+                              ),
+                            ),
+                            PositionedDirectional(
+                              top: -10,
+                              end: -10,
+                              child: BadgeWidget(
+                                count: context
+                                    .watch<CartBloc>()
+                                    .state
+                                    .getProductQuantity(widget.product.id),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
