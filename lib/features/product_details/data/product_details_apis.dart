@@ -1,4 +1,3 @@
-import 'package:test_eccomarce/shared/dio_client/api_exception.dart';
 
 import '../../../../../shared/dio_client/dio_client.dart';
 import '../../../../../shared/dio_client/result.dart';

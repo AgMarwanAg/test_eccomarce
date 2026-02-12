@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:test_eccomarce/features/home/features/home_tab/presentation/widgets/home_app_bar_widget.dart';
-import 'package:test_eccomarce/features/home/features/home_tab/presentation/widgets/home_blog_widget.dart';
 import 'package:test_eccomarce/features/home/features/home_tab/presentation/widgets/home_categories_widget.dart';
 import 'package:test_eccomarce/features/home/features/home_tab/presentation/widgets/home_new_arrivals_widget.dart';
 import 'package:test_eccomarce/features/home/features/home_tab/presentation/widgets/home_recommedation_widget.dart';
@@ -32,9 +31,7 @@ class HomeShimmer extends StatelessWidget {
           SliverToBoxAdapter(child: 16.sizeH),
           SliverToBoxAdapter(
             child: HomeSliderWidget(
-              ads: ProductModel.fromDummyList()
-                  .map((e) => e.thumbnail)
-                  .toList(),
+              products: ProductModel.fromDummyList(),
             ).paddingHorizontal(20.w),
           ),
           SliverToBoxAdapter(child: 32.sizeH),
@@ -55,8 +52,6 @@ class HomeShimmer extends StatelessWidget {
               products: ProductModel.fromDummyList(),
             ).paddingHorizontal(20.w),
           ),
-          SliverToBoxAdapter(child: 32.sizeH),
-          SliverToBoxAdapter(child: HomeBlogWidget()),
         ],
       ),
     );

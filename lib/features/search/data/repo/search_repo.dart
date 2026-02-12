@@ -1,4 +1,3 @@
- import 'package:test_eccomarce/core/logging/logger.dart';
 import 'package:test_eccomarce/features/search/data/search_api.dart';
 import 'package:test_eccomarce/shared/dio_client/response_model.dart';
 import 'package:test_eccomarce/shared/dio_client/result.dart';

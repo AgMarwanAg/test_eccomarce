@@ -49,7 +49,7 @@ class _HomeTabState extends State<HomeTab> with AutomaticKeepAliveClientMixin {
 
                 SliverToBoxAdapter(
                   child: HomeSliderWidget(
-                    ads: state.home.products.map((e) => e.thumbnail).toList(),
+                    products: state.home.products,
                   ).paddingHorizontal(20.w),
                 ),
                 SliverToBoxAdapter(child: 32.sizeH),
@@ -71,7 +71,7 @@ class _HomeTabState extends State<HomeTab> with AutomaticKeepAliveClientMixin {
                   ).paddingHorizontal(20.w),
                 ),
                 SliverToBoxAdapter(child: 32.sizeH),
-                SliverToBoxAdapter(child: HomeBlogWidget()),
+                SliverToBoxAdapter(child: HomeBlogWidget(products: state.home.products)),
               ],
             ),
           );
