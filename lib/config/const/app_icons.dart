@@ -6,7 +6,10 @@ abstract final class AppIcons {
   static const String chat ='${_iconsPath}chat.svg';
   static const String home ='${_iconsPath}home.svg';
   static const String profile ='${_iconsPath}profile.svg';
-  
+  static const String store ='${_iconsPath}store.svg';
+  static const String stock ='${_iconsPath}stock.svg';
+  static const String delivery ='${_iconsPath}delivery.svg';
+    
 
 
   static const String exclamationMark = '${_iconsPath}exclamation_mark_sign_triangle.svg';
