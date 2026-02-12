@@ -60,7 +60,9 @@ class CustomBottomSheet extends StatelessWidget {
           return Container(
             constraints: BoxConstraints(
               maxHeight: getMaxHeight(context),
-              minHeight: isDynamicHeight ? 0 : getMaxHeight(context) * 0.3, // Minimum 30% of max height
+              minHeight: isDynamicHeight
+                  ? 0
+                  : getMaxHeight(context) * 0.3, // Minimum 30% of max height
               minWidth: double.infinity,
             ),
             // padding: EdgeInsets.only(top: 20.h),
@@ -72,7 +74,9 @@ class CustomBottomSheet extends StatelessWidget {
               ),
             ),
             padding: EdgeInsets.only(
-              bottom: keyboardIsOpen ? MediaQuery.of(context).viewInsets.bottom : 0.h,
+              bottom: keyboardIsOpen
+                  ? MediaQuery.of(context).viewInsets.bottom
+                  : 0.h,
             ),
             child: ClipRRect(
               clipBehavior: Clip.hardEdge,
@@ -84,9 +88,7 @@ class CustomBottomSheet extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    height: topPadding ?? 20.h,
-                  ),
+                  SizedBox(height: topPadding ?? 20.h),
                   if (isDynamicHeight)
                     ConstrainedBox(
                       constraints: BoxConstraints(
@@ -94,12 +96,10 @@ class CustomBottomSheet extends StatelessWidget {
                       ),
                       child: child,
                     )
-                  else if (dontExpandChild) 
+                  else if (dontExpandChild)
                     child
                   else
-                    Expanded(
-                      child: child,
-                    ),
+                    Expanded(child: child),
                 ],
               ),
             ),
@@ -168,6 +168,7 @@ class CustomBottomSheet extends StatelessWidget {
       enableDrag: isScrollControlled,
       backgroundColor: backgroundColor ?? Colors.transparent,
       isDismissible: isDismissible,
+      barrierColor: Colors.black.withValues(alpha: 0.5),
       builder: (context) {
         return child ??= WillPopScope(
           onWillPop: () async {
@@ -186,7 +187,20 @@ class CustomBottomSheet extends StatelessWidget {
               builder: (context) {
                 // Wrap the builder with a Scrollbar and ensure proper scroll physics
                 final widget = builder(context);
-                return widget;
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      width: 35.w,
+                      height: 6.h,
+                      decoration: BoxDecoration(
+                        color: AppColors.homeBlogBGColor,
+                        borderRadius: BorderRadius.circular(20.r),
+                      ),
+                    ),
+                    widget,
+                  ],
+                );
               },
             ),
           ),

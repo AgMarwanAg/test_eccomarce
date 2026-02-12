@@ -2,13 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_eccomarce/config/style/app_colors.dart';
 import 'package:test_eccomarce/config/style/app_decoration.dart';
+import 'package:test_eccomarce/core/di/locator.dart';
 import 'package:test_eccomarce/core/faker/dummy_network_image.dart';
+import 'package:test_eccomarce/features/home/features/home_tab/presentation/cubit/get_home_cubit.dart';
+import 'package:test_eccomarce/features/home/features/home_tab/presentation/widgets/home_new_arrivals_widget.dart';
+import 'package:test_eccomarce/features/home/features/home_tab/presentation/widgets/home_recommedation_widget.dart';
 import 'package:test_eccomarce/features/product_details/presentation/cubit/get_product_details_cubit.dart';
 import 'package:test_eccomarce/features/product_details/presentation/product_details_shimmer.dart';
+import 'package:test_eccomarce/features/product_details/presentation/widgets/extra_info.dart';
 import 'package:test_eccomarce/features/product_details/presentation/widgets/product_details_appbar_widget.dart';
 import 'package:test_eccomarce/features/product_details/presentation/widgets/product_details_carousel.dart';
 import 'package:test_eccomarce/features/product_details/presentation/widgets/product_details_description.dart';
 import 'package:test_eccomarce/features/product_details/presentation/widgets/product_sizes_widget.dart';
+import 'package:test_eccomarce/shared/extensions/padding_ex.dart';
 import 'package:test_eccomarce/shared/extensions/size_ex.dart';
 import 'package:test_eccomarce/shared/extensions/widget_ex.dart';
 import 'package:test_eccomarce/shared/widgets/app_fav_widget.dart';
@@ -63,6 +69,23 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           ProductDetailsDescription(product: state.product),
                           24.sizeH,
                           ProductSizesWidget(sizes: state.product.tags),
+                          32.sizeH,
+                          ExtraInfo(product: state.product),
+                          32.sizeH,
+
+                          BlocProvider(
+                            create: (context) => sl<GetHomeCubit>(),
+                            child: BlocBuilder<GetHomeCubit, GetHomeState>(
+                              builder: (context, state) {
+                                if (state is GetHomeSuccess) {
+                                  return HomeRecommendedWidget(
+                                    products: state.home.products,
+                                  );
+                                }
+                                return SizedBox();
+                              },
+                            ),
+                          ),
                         ],
                       ),
                     ),

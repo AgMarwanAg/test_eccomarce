@@ -14,6 +14,7 @@ class AppColors {
   static const Color transparent = Colors.transparent;
   static const Color errorColor = Color(0xFFEF5350);
   static const Color navBarColor = Color(0xFFF6F6F6);
+  static const Color textPrimary = Color(0xFF84D153);
 
   //grey colors
   static const Color primaryFontColor = Color(0xFF0F172A);

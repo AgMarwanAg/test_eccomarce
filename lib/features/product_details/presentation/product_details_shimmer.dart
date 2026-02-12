@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_eccomarce/features/product_details/presentation/widgets/extra_info.dart';
 import 'package:test_eccomarce/features/product_details/presentation/widgets/product_details_appbar_widget.dart';
 import 'package:test_eccomarce/features/product_details/presentation/widgets/product_details_carousel.dart';
 import 'package:test_eccomarce/features/product_details/presentation/widgets/product_details_description.dart';
@@ -28,7 +29,10 @@ class ProductDetailsShimmer extends StatelessWidget {
                   ),
                   24.sizeH,
 
-                  ProductSizesWidget(sizes: ['tag1', 'tag2', 'tag3', 'tag4']),
+                  ProductSizesWidget(sizes: ['tag1', 'tag2', 'tag3']),
+                  32.sizeH,
+                  ExtraInfo(product: ProductModel.fromDummyList()[0]),
+                  32.sizeH,
                 ],
               ),
             ),
