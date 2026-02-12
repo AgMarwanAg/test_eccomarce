@@ -14,6 +14,8 @@ class AppTextStyle {
       TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w700);
   static TextStyle get s10W600 =>
       TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w600);
+  static TextStyle get s10W400 =>
+      TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w400);
   static TextStyle get s10W500 =>
       TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w500);
   static TextStyle get s10W600p => TextStyle(

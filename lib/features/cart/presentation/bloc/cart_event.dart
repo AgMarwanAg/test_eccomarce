@@ -41,15 +41,6 @@ class UpdateCartItem extends CartEvent {
 
 class ClearCart extends CartEvent {}
 
-class AddProductsToCart extends CartEvent {
-  final List<ProductModel> products;
-  final List<int>? quantities;
-  const AddProductsToCart(this.products, {this.quantities});
-
-  @override
-  List<Object?> get props => [products, quantities];
-}
-
 class UpdateNotes extends CartEvent {
   final String notes;
   const UpdateNotes(this.notes);
