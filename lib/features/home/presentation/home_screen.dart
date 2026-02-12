@@ -35,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
       HomeTab(),
       Center(child: Text('Categories')),
       Center(child: Text('Chat')),
-      CartScreen(),
+      CartScreen(isFullScreen: false),
       Center(child: Text('Profile')),
     ];
   }

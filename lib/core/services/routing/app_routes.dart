@@ -45,7 +45,9 @@ abstract class AppRoutes {
 
      GoRoute(
       path: CartScreen.path,
-      builder: (context, state) => CartScreen(),
+      builder: (context, state) => CartScreen(
+        isFullScreen: state.extra as bool,
+      ),
     ),
   ];
 }
