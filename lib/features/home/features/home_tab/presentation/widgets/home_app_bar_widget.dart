@@ -5,6 +5,7 @@ import 'package:test_eccomarce/config/style/app_decoration.dart';
 import 'package:test_eccomarce/core/utls/connection_utils.dart';
 import 'package:test_eccomarce/features/search/presentation/search_screen.dart';
 import 'package:test_eccomarce/shared/extensions/_export.dart';
+import 'package:test_eccomarce/shared/widgets/connection_status_widget.dart';
 import 'package:test_eccomarce/shared/widgets/text_widget.dart';
 
 class HomeAppBarWidget extends StatelessWidget {
@@ -29,16 +30,13 @@ class HomeAppBarWidget extends StatelessWidget {
               StreamBuilder<bool>(
                 stream: InternetConnectionService.onInternetStatusChange,
                 builder: (context, snapshot) {
-                  final hasInternet = snapshot.data ?? true;
+                  // final hasInternet = snapshot.data ?? true;
+                  final hasInternet = true;
 
-                  if (!hasInternet) {
-                    return Text('No', style: TextStyle(fontSize: 18));
-                  }
-
-                  return Text('yes');
+                  return ConnectionStatusWidget(isOnline: hasInternet);
                 },
               ),
-              5.sizeW,
+              15.sizeW,
               GestureDetector(
                 onTap: () {
                   SearchScreen.push(context);
