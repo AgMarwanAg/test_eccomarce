@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_eccomarce/core/di/locator.dart';
+import 'package:test_eccomarce/features/cart/presentation/cart_screen.dart';
 import 'package:test_eccomarce/features/home/features/home_tab/presentation/cubit/get_home_cubit.dart';
 import 'package:test_eccomarce/features/home/presentation/cubit/home_navigation_cubit.dart';
 import 'package:test_eccomarce/features/home/presentation/home_screen.dart';
@@ -40,6 +41,11 @@ abstract class AppRoutes {
         create: (context) => sl<SearchCubit>(),
         child: SearchScreen(),
       ),
+    ),
+
+     GoRoute(
+      path: CartScreen.path,
+      builder: (context, state) => CartScreen(),
     ),
   ];
 }

@@ -15,6 +15,7 @@ import 'package:test_eccomarce/features/product_details/presentation/cubit/get_p
 import 'package:test_eccomarce/features/search/data/repo/search_repo.dart';
 import 'package:test_eccomarce/features/search/data/search_api.dart';
 import 'package:test_eccomarce/features/search/presentation/cubit/search_cubit.dart';
+import '../../features/cart/presentation/bloc/cart_bloc.dart';
 import '../../shared/cubits/session_cubit/session_cubit.dart';
 import '../../shared/dio_client/dio_client.dart';
 import '../caching/shared_pref_services.dart';
@@ -81,5 +82,8 @@ Future<void> setUpLocator() async {
   sl.registerFactory<SearchCubit>(
     () => SearchCubit(sl<SearchRepo>()),
   );
-
+ 
+sl.registerFactory<CartBloc>(
+    () => CartBloc(),
+  );
 }
