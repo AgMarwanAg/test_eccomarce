@@ -21,12 +21,6 @@ class CartState extends Equatable {
       cart.items?.any((item) => item.product.id == productId) ?? false;
 
   num getProductQuantity(int productId) {
-    // collection package is useful here but I will stick to basic iterable methods or install collection if needed.
-    // Standard iterable `firstWhere` throws if not found, so I'll use `cast` and `where` or just standard manual check or `firstWhere` with `orElse`.
-    // Actually `temp.md` used `firstWhereOrNull` which implies `collection` package.
-    // I will use standard try/catch or manual search to avoid adding dependency if not present,
-    // OR I can use `active_document` imports to see if `collection` is used.
-    // `temp.md` used `firstWhereOrNull`. I'll assume users have `collection` or I'll use a safe approach.
     try {
       return cart.items
               ?.firstWhere((item) => item.product.id == productId)
