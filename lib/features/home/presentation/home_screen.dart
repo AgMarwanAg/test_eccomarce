@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_eccomarce/features/cart/presentation/cart_screen.dart';
 
 import '../../../shared/extensions/_export.dart';
 import '../../../shared/widgets/app_scaffold.dart';
@@ -34,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
       HomeTab(),
       Center(child: Text('Categories')),
       Center(child: Text('Chat')),
-      Center(child: Text('Cart')),
+      CartScreen(),
       Center(child: Text('Profile')),
     ];
   }
