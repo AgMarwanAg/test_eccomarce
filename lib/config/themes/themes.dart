@@ -19,7 +19,7 @@ class AppTheme {
       labelStyle: AppTextStyle.textLabelStyle,
       hintStyle: AppTextStyle.textHintStyle,
       enabledBorder: OutlineInputBorder(
-        borderSide: const BorderSide(color: AppColors.textFieldBorderColor),
+        borderSide: const BorderSide(color: AppColors.appDivider),
         borderRadius: BorderRadius.circular(12.r),
       ),
       errorBorder: OutlineInputBorder(
@@ -32,7 +32,7 @@ class AppTheme {
       ),
       focusedBorder: OutlineInputBorder(
         borderSide: const BorderSide(
-          color: AppColors.textFieldBorderColor,
+          color: AppColors.hintColors,
         ),
         borderRadius: BorderRadius.circular(12.r),
       ),

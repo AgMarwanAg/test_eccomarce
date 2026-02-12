@@ -36,11 +36,12 @@ class HomeRecommendedWidget extends StatelessWidget {
         HorizontalList(
           itemCount: products.length,
           spacing: 16.w,
-          itemBuilder: (context, index) =>
-              ProductItemWidget(product: products[index], isFavorate: index % 2 == 0),
+          itemBuilder: (context, index) => ProductItemWidget(
+            product: products[index],
+            isFavorite: index % 2 == 0,
+          ),
         ),
       ],
     );
   }
 }
-

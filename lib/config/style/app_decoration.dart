@@ -7,6 +7,10 @@ class AppDecoration {
   AppDecoration._();
   static BoxDecoration get navBarDecoration => BoxDecoration(
     color: AppColors.navBarColor,
+    borderRadius: BorderRadius.only(
+      topLeft: Radius.circular(20.r),
+      topRight: Radius.circular(20.r),
+    ),
     border: BoxBorder.fromSTEB(
       top: BorderSide(color: AppColors.appDivider, width: 2.w),
     ),
@@ -32,10 +36,8 @@ class AppDecoration {
     borderRadius: BorderRadius.circular(24.r),
     border: Border.all(color: AppColors.appDivider),
   );
-  static ShapeDecoration get discountCard=>ShapeDecoration(
+  static ShapeDecoration get discountCard => ShapeDecoration(
     color: AppColors.primaryDisabledColor,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(99.r),
-    ),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(99.r)),
   );
 }
