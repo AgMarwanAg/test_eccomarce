@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -51,28 +52,30 @@ class _HomeTabState extends State<HomeTab> with AutomaticKeepAliveClientMixin {
                   child: HomeSliderWidget(
                     products: state.home.products,
                     isLoading: false,
-                  ).paddingHorizontal(20.w),
+                  ).fadeInLeft(delay: const Duration(milliseconds: 500)).paddingHorizontal(20.w),
                 ),
                 SliverToBoxAdapter(child: 32.sizeH),
                 SliverToBoxAdapter(
                   child: HomeCategoriesWidget(
                     categories: state.home.categories,
-                  ).paddingHorizontal(20.w),
+                  ).fadeInLeft(delay: const Duration(milliseconds: 1000)).paddingHorizontal(20.w),
                 ),
                 SliverToBoxAdapter(child: 32.sizeH),
                 SliverToBoxAdapter(
                   child: HomeNewArrivalsWidget(
                     products: state.home.products,
-                  ).paddingHorizontal(20.w),
+                  ).fadeInLeft(delay: const Duration(milliseconds: 1500)).paddingHorizontal(20.w),
                 ),
                 SliverToBoxAdapter(child: 32.sizeH),
                 SliverToBoxAdapter(
                   child: HomeRecommendedWidget(
                     products: state.home.products,
-                  ).paddingHorizontal(20.w),
+                  ).fadeInLeft(delay: const Duration(milliseconds: 2000)).paddingHorizontal(20.w),
                 ),
                 SliverToBoxAdapter(child: 32.sizeH),
-                SliverToBoxAdapter(child: HomeBlogWidget(products: state.home.products)),
+                SliverToBoxAdapter(
+                  child: HomeBlogWidget(products: state.home.products),
+                ),
               ],
             ),
           );

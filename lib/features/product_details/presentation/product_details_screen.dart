@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_eccomarce/config/style/app_colors.dart';
@@ -22,6 +23,7 @@ import 'package:test_eccomarce/shared/widgets/app_scaffold.dart';
 import 'package:test_eccomarce/shared/widgets/badge_widget.dart';
 import 'package:test_eccomarce/shared/widgets/buttons/primary_btn.dart';
 import 'package:test_eccomarce/shared/widgets/state_widgets/failure_widget.dart';
+import 'package:test_eccomarce/shared/widgets/success_overlay.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   final int id;
@@ -65,13 +67,27 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          ProductDetailsCarousel(images: state.product.images),
+                          ProductDetailsCarousel(
+                            images: state.product.images,
+                          ).fadeInLeft(
+                            delay: const Duration(milliseconds: 100),
+                          ),
                           16.sizeH,
-                          ProductDetailsDescription(product: state.product),
+                          ProductDetailsDescription(
+                            product: state.product,
+                          ).fadeInLeft(
+                            delay: const Duration(milliseconds: 500),
+                          ),
                           24.sizeH,
-                          ProductSizesWidget(sizes: state.product.tags),
+                          ProductSizesWidget(
+                            sizes: state.product.tags,
+                          ).fadeInLeft(
+                            delay: const Duration(milliseconds: 800),
+                          ),
                           32.sizeH,
-                          ExtraInfo(product: state.product),
+                          ExtraInfo(product: state.product).fadeInLeft(
+                            delay: const Duration(milliseconds: 1200),
+                          ),
                           32.sizeH,
 
                           BlocProvider(
@@ -142,6 +158,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         PrimaryBtn(
                           text: 'Add to Cart',
                           onPressed: () {
+                            if (!context.read<CartBloc>().state.isProductInCart(
+                              state.product.id,
+                            )) {
+                              SuccessOverlay.show(context);
+                            }
                             context.read<CartBloc>().add(
                               AddCartItem(
                                 CartItem(product: state.product, quantity: 1),

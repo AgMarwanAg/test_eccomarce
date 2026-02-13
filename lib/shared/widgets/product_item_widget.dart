@@ -10,6 +10,7 @@ import 'package:test_eccomarce/shared/extensions/_export.dart';
 import 'package:test_eccomarce/shared/models/product_model.dart';
 import 'package:test_eccomarce/shared/widgets/badge_widget.dart';
 import 'package:test_eccomarce/shared/widgets/images/network_image.dart';
+import 'package:test_eccomarce/shared/widgets/success_overlay.dart';
 import 'package:test_eccomarce/shared/widgets/text_widget.dart';
 
 class ProductItemWidget extends StatefulWidget {
@@ -77,6 +78,12 @@ class _ProductItemWidgetState extends State<ProductItemWidget> {
                       ),
                       GestureDetector(
                         onTap: () {
+                          if (!context.read<CartBloc>().state.isProductInCart(
+                            widget.product.id,
+                          )) {
+                            SuccessOverlay.show(context);
+                          }
+
                           context.read<CartBloc>().add(
                             AddCartItem(
                               CartItem(product: widget.product, quantity: 1),
