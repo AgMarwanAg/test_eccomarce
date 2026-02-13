@@ -1,3 +1,4 @@
+import 'package:test_eccomarce/features/cart/data/models/cart_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:test_eccomarce/core/database/hive_box_names.dart';
 import 'package:test_eccomarce/features/home/features/home_tab/data/model/home_model.dart';
@@ -19,6 +20,8 @@ class DatabaseHelper {
     Hive.registerAdapter(ProductModelAdapter());
     Hive.registerAdapter(CategoryModelAdapter());
     Hive.registerAdapter(HomeModelAdapter());
+    Hive.registerAdapter(CartItemAdapter());
+    Hive.registerAdapter(CartAdapter());
 
     _isInitialized = true;
   }
@@ -43,6 +46,10 @@ class DatabaseHelper {
     return await getBox(HiveBoxNames.categories);
   }
 
+  Future<Box<Cart>> getCartBox() async {
+    return await getBox<Cart>(HiveBoxNames.cart);
+  }
+
   Future<void> clearBox(String boxName) async {
     final box = await getBox(boxName);
     await box.clear();
@@ -52,6 +59,7 @@ class DatabaseHelper {
     await clearBox(HiveBoxNames.homeCache);
     await clearBox(HiveBoxNames.products);
     await clearBox(HiveBoxNames.categories);
+    await clearBox(HiveBoxNames.cart);
   }
 
   Future<void> closeBox(String boxName) async {

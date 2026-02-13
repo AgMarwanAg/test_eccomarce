@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_eccomarce/core/database/database_helper.dart';
 import 'package:test_eccomarce/features/home/features/home_tab/data/datasources/home_local_data_source.dart';
+import 'package:test_eccomarce/features/cart/data/datasources/cart_local_data_source.dart';
 import 'package:test_eccomarce/features/home/features/home_tab/data/home_api.dart';
 import 'package:test_eccomarce/features/home/features/home_tab/data/repo/home_api_repository_impl.dart';
 import 'package:test_eccomarce/features/home/features/home_tab/data/repo/home_local_repository_impl.dart';
@@ -42,6 +43,10 @@ Future<void> setUpLocator() async {
     () => HomeLocalDataSourceImpl(sl<DatabaseHelper>()),
   );
 
+  sl.registerLazySingleton<CartLocalDataSource>(
+    () => CartLocalDataSourceImpl(sl<DatabaseHelper>()),
+  );
+
   sl.registerLazySingleton<HomeRepository>(
     () => HomeApiRepositoryImpl(sl<HomeApi>()),
     instanceName: 'apiRepo',
@@ -73,17 +78,11 @@ Future<void> setUpLocator() async {
     () => GetProductDetailsCubit(sl<ProductDetailsRepo>()),
   );
 
-    sl.registerLazySingleton<SearchApi>(
-    () => SearchApi(sl<DioClient>()),
-  );
-  sl.registerLazySingleton<SearchRepo>(
-    () => SearchRepoImpl(sl<SearchApi>()),
-  );
-  sl.registerFactory<SearchCubit>(
-    () => SearchCubit(sl<SearchRepo>()),
-  );
- 
-sl.registerFactory<CartBloc>(
-    () => CartBloc(),
+  sl.registerLazySingleton<SearchApi>(() => SearchApi(sl<DioClient>()));
+  sl.registerLazySingleton<SearchRepo>(() => SearchRepoImpl(sl<SearchApi>()));
+  sl.registerFactory<SearchCubit>(() => SearchCubit(sl<SearchRepo>()));
+
+  sl.registerFactory<CartBloc>(
+    () => CartBloc(sl<CartLocalDataSource>())..add(const LoadCart()),
   );
 }

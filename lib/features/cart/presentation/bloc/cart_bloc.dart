@@ -1,19 +1,36 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:test_eccomarce/features/cart/data/datasources/cart_local_data_source.dart';
 import 'package:test_eccomarce/features/cart/data/models/cart_model.dart';
+import 'dart:developer';
 
 part 'cart_event.dart';
 part 'cart_state.dart';
 
 class CartBloc extends Bloc<CartEvent, CartState> {
-  CartBloc() : super(const CartState(cart: Cart(items: []))) {
+  final CartLocalDataSource _cartLocalDataSource;
+
+  CartBloc(this._cartLocalDataSource)
+    : super(const CartState(cart: Cart(items: []))) {
+    on<LoadCart>(_onLoadCart);
     on<AddCartItem>(_onAddCartItem);
     on<DecreaseQuantityItem>(_onDecreaseQuantityItem);
     on<RemoveCartItem>(_onRemoveCartItem);
     on<ClearCart>(_onClearCart);
   }
 
-  void _onAddCartItem(AddCartItem event, Emitter<CartState> emit) {
+  Future<void> _onLoadCart(LoadCart event, Emitter<CartState> emit) async {
+    try {
+      final cart = await _cartLocalDataSource.getCart();
+      if (cart != null) {
+        emit(state.copyWith(cart: cart));
+      }
+    } catch (e) {
+      log('Error loading cart: $e');
+    }
+  }
+
+  void _onAddCartItem(AddCartItem event, Emitter<CartState> emit) async {
     final updatedCart = List<CartItem>.from(state.cart.items ?? []);
     final index = updatedCart.indexWhere(
       (item) => item.product.id == event.item.product.id,
@@ -28,18 +45,15 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       updatedCart.add(event.item);
     }
 
-    emit(
-      state.copyWith(
-        cart: state.cart.copyWith(items: updatedCart),
-        status: CartStatus.initial,
-      ),
-    );
+    final newCart = state.cart.copyWith(items: updatedCart);
+    emit(state.copyWith(cart: newCart, status: CartStatus.initial));
+    await _cartLocalDataSource.cacheCart(newCart);
   }
 
   void _onDecreaseQuantityItem(
     DecreaseQuantityItem event,
     Emitter<CartState> emit,
-  ) {
+  ) async {
     final updatedCart = List<CartItem>.from(state.cart.items ?? []);
 
     final index = updatedCart.indexWhere(
@@ -60,22 +74,23 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       }
     }
 
-    emit(
-      state.copyWith(
-        cart: state.cart.copyWith(items: updatedCart),
-        status: CartStatus.initial,
-      ),
-    );
+    final newCart = state.cart.copyWith(items: updatedCart);
+    emit(state.copyWith(cart: newCart, status: CartStatus.initial));
+    await _cartLocalDataSource.cacheCart(newCart);
   }
 
-  void _onRemoveCartItem(RemoveCartItem event, Emitter<CartState> emit) {
+  void _onRemoveCartItem(RemoveCartItem event, Emitter<CartState> emit) async {
     final updatedCart = List<CartItem>.from(state.cart.items ?? [])
       ..removeWhere((item) => item.product.id == event.itemId);
-    emit(state.copyWith(cart: state.cart.copyWith(items: updatedCart)));
+
+    final newCart = state.cart.copyWith(items: updatedCart);
+    emit(state.copyWith(cart: newCart));
+    await _cartLocalDataSource.cacheCart(newCart);
   }
 
-  void _onClearCart(ClearCart event, Emitter<CartState> emit) {
+  void _onClearCart(ClearCart event, Emitter<CartState> emit) async {
     final updatedCart = state.cart.copyWith(items: []);
     emit(state.copyWith(cart: updatedCart));
+    await _cartLocalDataSource.clearCart();
   }
 }
