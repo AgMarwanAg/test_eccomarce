@@ -28,7 +28,7 @@ class CartBodyWidget extends StatelessWidget {
             itemCount: state.getCartItemCount(),
           );
         },
-      ),
+      ).paddingHorizontal(24.w),
     );
   }
 }

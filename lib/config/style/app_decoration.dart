@@ -40,4 +40,16 @@ class AppDecoration {
     color: AppColors.primaryDisabledColor,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(99.r)),
   );
+  static BoxDecoration get pricingSheet => BoxDecoration(
+    color: AppColors.whiteColor,
+
+    border: BoxBorder.fromSTEB(
+      top: BorderSide(color: AppColors.appDivider, width: 2.w),
+    ),
+  );
+  static BoxDecoration get deleteSlider => BoxDecoration(
+    color: AppColors.errorColor,
+
+    borderRadius: BorderRadius.circular(20.r),
+  );
 }
