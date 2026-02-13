@@ -30,8 +30,8 @@ class HomeAppBarWidget extends StatelessWidget {
               StreamBuilder<bool>(
                 stream: InternetConnectionService.onInternetStatusChange,
                 builder: (context, snapshot) {
-                  // final hasInternet = snapshot.data ?? true;
-                  final hasInternet = true;
+                  final hasInternet = snapshot.data ?? true;
+                  // final hasInternet = true;
 
                   return ConnectionStatusWidget(isOnline: hasInternet);
                 },

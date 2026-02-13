@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:test_eccomarce/features/cart/presentation/bloc/cart_bloc.dart';
 import 'package:test_eccomarce/shared/widgets/badge_widget.dart';
-import 'package:test_eccomarce/shared/widgets/text_widget.dart';
 import '../../../config/style/app_decoration.dart';
 import '../../../shared/widgets/images/svg_image.dart';
 

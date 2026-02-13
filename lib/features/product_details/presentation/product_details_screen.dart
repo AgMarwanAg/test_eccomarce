@@ -6,7 +6,6 @@ import 'package:test_eccomarce/config/style/app_decoration.dart';
 import 'package:test_eccomarce/core/di/locator.dart';
 import 'package:test_eccomarce/features/cart/data/models/cart_model.dart';
 import 'package:test_eccomarce/features/cart/presentation/bloc/cart_bloc.dart';
-import 'package:test_eccomarce/features/cart/presentation/widgets/counter_widget.dart';
 import 'package:test_eccomarce/features/home/features/home_tab/presentation/cubit/get_home_cubit.dart';
 import 'package:test_eccomarce/features/home/features/home_tab/presentation/widgets/home_recommedation_widget.dart';
 import 'package:test_eccomarce/features/product_details/presentation/cubit/get_product_details_cubit.dart';
