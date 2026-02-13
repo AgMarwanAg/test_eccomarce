@@ -96,7 +96,7 @@ lib/
 
 5. Run the application:
    ```bash
-   flutter run -t lib/main_dev.dart --flavor=dev
+   flutter run -t lib/main_dev.dar
    ```
 
 ## Development
