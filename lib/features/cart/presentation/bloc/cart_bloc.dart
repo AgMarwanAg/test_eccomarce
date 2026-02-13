@@ -1,12 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:test_eccomarce/core/services/routing/navigator_service.dart';
 import 'package:test_eccomarce/features/cart/data/datasources/cart_local_data_source.dart';
 import 'package:test_eccomarce/features/cart/data/models/cart_model.dart';
 import 'dart:developer';
 
-import 'package:test_eccomarce/shared/dio_client/result.dart';
-import 'package:test_eccomarce/shared/widgets/success_overlay.dart';
 
 part 'cart_event.dart';
 part 'cart_state.dart';
