@@ -39,7 +39,13 @@ class UpdateCartItem extends CartEvent {
   List<Object?> get props => [item];
 }
 
-class ClearCart extends CartEvent {}
+class ClearCart extends CartEvent {
+  const ClearCart();
+}
+
+class LoadCart extends CartEvent {
+  const LoadCart();
+}
 
 class UpdateNotes extends CartEvent {
   final String notes;

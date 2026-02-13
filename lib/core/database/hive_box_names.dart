@@ -6,4 +6,5 @@ class HiveBoxNames {
   static const String homeCache = 'home_cache';
   static const String products = 'products';
   static const String categories = 'categories';
+  static const String cart = 'cart';
 }
