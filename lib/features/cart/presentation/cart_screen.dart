@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_eccomarce/features/cart/presentation/widgets/pricing_sheet_widget.dart';
 import 'package:test_eccomarce/shared/extensions/_export.dart';
 import 'package:test_eccomarce/shared/widgets/app_scaffold.dart';
 
@@ -17,13 +18,18 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return isFullScreen
-        ? AppScaffold(body: _bodyWidget())
-        : _bodyWidget().paddingHorizontal(24.w);
+        ? AppScaffold(padding: 0, body: _bodyWidget())
+        : _bodyWidget();
   }
 
   Column _bodyWidget() {
     return Column(
-    children: [CartAppBarWidget(), 25.sizeH, CartBodyWidget()],
-  );
+      children: [
+        CartAppBarWidget().paddingHorizontal(24.w),
+        25.sizeH,
+        CartBodyWidget(),
+        PricingSheetWidget(),
+      ],
+    );
   }
 }

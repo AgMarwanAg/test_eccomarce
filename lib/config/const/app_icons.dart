@@ -9,6 +9,7 @@ abstract final class AppIcons {
   static const String store ='${_iconsPath}store.svg';
   static const String stock ='${_iconsPath}stock.svg';
   static const String delivery ='${_iconsPath}delivery.svg';
+  static const String trash ='${_iconsPath}trash.svg';
     
 
 
