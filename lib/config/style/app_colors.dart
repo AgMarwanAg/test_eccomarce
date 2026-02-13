@@ -22,6 +22,8 @@ class AppColors {
   static Color textFontGreyColor = const Color(0xFF9CA3AF);
   static const Color hintColors = Color(0xFF94A3B8);
   static const Color homeBlogBGColor = Color(0xFFEBEBEB);
+  static const Color overLayBG = Color.fromARGB(255, 117, 117, 117);
+
   //Button colors
 
   //shimmer colors
